@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { windowWidth, Colors, Fonts, windowHeight } from '../../utils/util';
 import FeatherIcons from '@expo/vector-icons/Feather';
-import { AuthContext } from '../navigation/AuthProvider';
+import { AuthContext } from './AuthProvider';
 import Button from '../components/Button';
 import Loading from '../components/loading';
 
@@ -21,12 +21,11 @@ const SignInScreen = ({ navigation }) => {
     const [password, setPassword] = useState('');
     const [secure, setSecure] = useState(true);
     const [focus, setFocus] = useState(false);
-    // const { loading } = useContext(AuthContext);
+    const { login, loading } = useContext(AuthContext);
 
     const onLogin = () => {
         if (email !== '' && password !== '') {
-            // login(email, password);
-            console.log('yah neh');
+            login(email, password);
         }
 
     };

@@ -11,6 +11,7 @@ import {
 	Image,
 } from 'react-native';
 import { Colors, Fonts, windowWidth } from '../../utils/util';
+import Startquize from '../components/startquiz';
 import Feather from '@expo/vector-icons/Feather';
 // import * as Speech from 'expo-speech';
 
@@ -28,7 +29,7 @@ const useMountedState = () => {
 	return isMounted;
 };
 
-const Prevention = () => {
+const Prevention = ({ navigation }) => {
 	let isMounted = useMountedState();
 	const [refreshing, setRefreshing] = useState(false);
 	const [speech, setSpeech] = useState({
@@ -198,6 +199,10 @@ const Prevention = () => {
 						This way, the unwanted food will not end up in the bin.
 					</Text>
 				</View>
+				<Startquize title='Take a quiz' onPress={() => navigation.navigate('Fourthquiz')} />
+				<Text>
+					{"\n"}
+				</Text>
 			</ScrollView>
 		</SafeAreaView>
 	);

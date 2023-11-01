@@ -11,69 +11,50 @@ import {
 } from 'react-native';
 import { Colors, Fonts, windowHeight, windowWidth } from '../../utils/util';
 import FeatherIcons from '@expo/vector-icons/Feather';
-import { AuthProvider } from '../navigation/AuthProvider';
+// import { AuthProvider,register } from '../navigation/AuthProvider';
+import { AuthContext } from './AuthProvider';
 import Button from '../components/Button';
 import Loading from '../components/loading';
 import DropDown from '../components/DropDown';
 
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
 
+// const getAllData = async () => {
+// 	try {
+// 		const snapshot = await firebase.firestore().collection('YourCollection').get();
+// 		const data = [];
 
+// 		snapshot.forEach(doc => {
+// 			// Extract the document data and add it to the array
+// 			data.push(doc.data());
+// 		});
 
-const firebaseConfig = {
-	apiKey: 'AIzaSyB5VMVtl6wjKh5ttFuOgV5SqedFJ1-K2JU',
-	authDomain: 'foodwastage-a02af.firebaseapp.com',
-	projectId: 'foodwastage-a02af',
-	storageBucket: 'foodwastage-a02af.appspot.com',
-	messagingSenderId: '232726174827',
-	appId: '1:232726174827:web:0f00263b9547c06cc6a52e',
-};
+// 		// Return the array containing all the documents
+// 		return data;
+// 	} catch (error) {
+// 		console.error('Error getting documents:', error);
+// 		return [];
+// 	}
+// };
 
-if (firebase.apps.length === 0) {
-	firebase.initializeApp(firebaseConfig);
-}
-
-
-
-const getAllData = async () => {
-  try {
-    const snapshot = await firebase.firestore().collection('YourCollection').get();
-    const data = [];
-    
-    snapshot.forEach(doc => {
-      // Extract the document data and add it to the array
-      data.push(doc.data());
-    });
-
-    // Return the array containing all the documents
-    return data;
-  } catch (error) {
-    console.error('Error getting documents:', error);
-    return [];
-  }
-};
-
-// Usage example
-getAllData()
-  .then(data => {
-    // Do something with the retrieved data
-    console.log(data);
-  })
-  .catch(error => {
-    // Handle any errors that occurred
-    console.error(error);
-  });
+// // Usage example
+// getAllData()
+// 	.then(data => {
+// 		// Do something with the retrieved data
+// 		console.log(data);
+// 	})
+// 	.catch(error => {
+// 		// Handle any errors that occurred
+// 		console.error(error);
+// 	});
 
 
 const SignUpScreen = ({ navigation }) => {
-	// const { register, loading } = useContext(AuthProvider);
-	console.log('Regionald Mongwe')
-	firebase
+	const { register } = useContext(AuthContext);
+
 	const [secure, setSecure] = useState(true);
 	const [focus, setFocus] = useState(false);
 	const [errors, setErrors] = useState({});
+	const [school, SetSchool] = useState('');
 	const [province, setProvince] = useState('-- Select Province --');
 	const [values, setValues] = useState({
 		name: '',
@@ -81,11 +62,12 @@ const SignUpScreen = ({ navigation }) => {
 		password: '',
 	});
 
+
 	const onSignUp = () => {
 		const error = validateInput();
 
 		if (Object.keys(error).length === 0) {
-			register(values.name, values.email, values.password, province);
+			register(values.name, values.email, values.password, province,school);
 		} else {
 			setErrors(error);
 		}
@@ -109,6 +91,10 @@ const SignUpScreen = ({ navigation }) => {
 
 		if (!province || province === '-- Select Province --') {
 			errors.province = 'Province is required';
+		}
+
+		if (!school) {
+			errors.school = 'School name is required';
 		}
 
 		if (!values.password) {
@@ -148,7 +134,7 @@ const SignUpScreen = ({ navigation }) => {
 						statusbarStyle='light-content'
 						backgroundColor={Colors.Primary}
 					/>
-					<Text style={styles.Title}>Welcome!</Text>
+					<Text style={styles.Title}>Welcome!???</Text>
 					<Text style={styles.subTitle}>Create an account</Text>
 
 					<View>
@@ -205,6 +191,23 @@ const SignUpScreen = ({ navigation }) => {
 						{errors.province && (
 							<Text style={styles.error}>{errors.province}</Text>
 						)}
+					</View>
+
+					<View>
+						<Text style={styles.label}>School</Text>
+						<View style={styles.inputContainer}>
+							<TextInput
+								style={styles.input}
+								onChangeText={(text) => SetSchool(text)}
+								numberOfLines={1}
+								maxLength={30}
+								placeholder='Name of school'
+								placeholderTextColor={Colors.gray}
+								autoCapitilize='words'
+								autoCorrect={false}
+							/>
+						</View>
+						{errors.school && <Text style={styles.error}>{errors.school}</Text>}
 					</View>
 
 					<View>

@@ -15,16 +15,35 @@
       "**/*"
     ],
     "ios": {
+      "googleServicesFile": "./GoogleService-info.plist",
       "supportsTablet": true
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1d5c4d"
-      }
+      },
+      "package": "com.uj.foodie"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "@react-native-firebase/app",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "334cfd92-f7b6-4346-a3f9-19e73b5201e8"
+      }
     }
   }
 }

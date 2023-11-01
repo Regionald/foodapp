@@ -1,5 +1,4 @@
 import React, { useState, createContext, useEffect } from 'react';
-import firebase from '../auth/firebase';
 import { Alert } from 'react-native';
 
 export const AuthContext = createContext();

@@ -11,6 +11,7 @@ import {
 	Image,
 } from 'react-native';
 import { Colors, Fonts, windowWidth } from '../../utils/util';
+import Startquize from '../components/startquiz';
 import Feather from '@expo/vector-icons/Feather';
 // import * as Speech from 'expo-speech';
 
@@ -28,7 +29,7 @@ const useMountedState = () => {
 	return isMounted;
 };
 
-const Nutrition = () => {
+const Nutrition = ({ navigation }) => {
 	let isMounted = useMountedState();
 	const [refreshing, setRefreshing] = useState(false);
 	const [speech, setSpeech] = useState({
@@ -287,6 +288,10 @@ const Nutrition = () => {
 						over 13 to drink at least 2 litres a day.
 					</Text>
 				</View>
+				<Startquize title='Take a quiz' onPress={() => navigation.navigate('Thirdquiz')} />
+				<Text>
+					{"\n"}
+				</Text>
 			</ScrollView>
 		</SafeAreaView>
 	);

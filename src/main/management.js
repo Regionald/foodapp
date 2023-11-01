@@ -10,7 +10,8 @@ import {
 	Text,
 	Image,
 } from 'react-native';
-import { Colors, Fonts, windowWidth,windowHeight } from '../../utils/util';
+import { Colors, Fonts, windowWidth, windowHeight } from '../../utils/util';
+import Startquize from '../components/startquiz';
 import Feather from '@expo/vector-icons/Feather';
 // import * as Speech from 'expo-speech';
 
@@ -28,7 +29,7 @@ const useMountedState = () => {
 	return isMounted;
 };
 
-const Recycling = ({navigation}) => {
+const Recycling = ({ navigation }) => {
 	let isMounted = useMountedState();
 	const [refreshing, setRefreshing] = useState(false);
 	const [speech, setSpeech] = useState({
@@ -179,24 +180,11 @@ const Recycling = ({navigation}) => {
 						3. Edible food can be donated instead of discarded.
 					</Text>
 				</View>
-				<View style={styles.bottom}>
-					<TouchableOpacity onPress={() => navigation.navigate('Quiz')}>
-						<View style={styles.option_bottom}>
-							<Text style={styles.title2}>Take A Quiz</Text>
-							<View style={styles.bottomOptionContent}>
-								<View style={styles.imageIcon}>
-									<Image
-										source={require('../../assets/quiz.png')}
-										style={styles.flatIcon}
-									/>
-								</View>
-							</View>
-						</View>
-					</TouchableOpacity>
-				</View>
-				<view>
-					
-				</view>
+				<Startquize title='Take a quiz' onPress={() => navigation.navigate('Firthquiz')} />
+				<Text>
+					{"\n"}
+				</Text>
+
 			</ScrollView>
 		</SafeAreaView>
 	);

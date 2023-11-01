@@ -10,24 +10,28 @@ import {
 	Image,
 } from 'react-native';
 import { Colors, Fonts, windowHeight, windowWidth } from '../../utils/util';
-import { AuthProvider, AuthContext } from '../navigation/AuthProvider';
+import { AuthContext } from '../auth/AuthProvider';
 import Loading from '../components/loading';
 
-const userData = { Name: 'Regionald' };
 const HomeScreen = ({ navigation }) => {
-	// const { userData, loading } = useContext(AuthContext);
+	const { userData, loading } = useContext(AuthContext);
 	const [msg, setMsg] = useState('');
 
 	const onInitialMaker = (text) => {
+		console.log(text);
 		try {
 			if (text !== undefined) {
+
 				text = text.trim();
 				let myString = text.split(' ');
+
 				let firstName = myString[0];
 				let lastName = myString[1];
 
 				let initials = firstName.substring(0, 1) + lastName.substring(0, 1);
 				return initials;
+
+
 			} else {
 				return 'NA';
 			}
@@ -39,6 +43,8 @@ const HomeScreen = ({ navigation }) => {
 	const getJustName = (text) => {
 		if (text !== undefined) {
 			try {
+
+				text = text.Full_Name;
 				text = text.trim();
 				let myString = text.split(' ');
 				let firstName = myString[0];
@@ -83,7 +89,7 @@ const HomeScreen = ({ navigation }) => {
 					<View style={styles.header}>
 						<View style={styles.headerContent}>
 							<Text style={styles.headerText}>
-								Good {msg} Reggy {/* Good {msg}, {getJustName(userData)} */}
+								Good {msg}, {getJustName(userData)}
 							</Text>
 							<Text style={styles.text}>
 								Learn more about food wastage and how to reduce it.
@@ -94,7 +100,7 @@ const HomeScreen = ({ navigation }) => {
 							onPress={() => navigation.navigate('Profile')}
 						>
 							<Text style={styles.initials}>
-								Reeggy {/* {onInitialMaker(userData?.Name)} */}
+								{onInitialMaker(userData?.Full_Name)}
 							</Text>
 						</TouchableOpacity>
 					</View>
@@ -115,7 +121,7 @@ const HomeScreen = ({ navigation }) => {
 									</View>
 								</View>
 							</TouchableOpacity>
-							
+
 
 							<TouchableOpacity
 								onPress={() => navigation.navigate('Prevention')}
@@ -179,21 +185,6 @@ const HomeScreen = ({ navigation }) => {
 							</TouchableOpacity>
 						</View>
 					</View>
-					{/* <View style={styles.bottom}>
-						<TouchableOpacity onPress={() => navigation.navigate('Quiz')}>
-							<View style={styles.option_bottom}>
-								<Text style={styles.title2}>Take A Quiz</Text>
-								<View style={styles.bottomOptionContent}>
-									<View style={styles.imageIcon}>
-										<Image
-											source={require('../../assets/quiz.png')}
-											style={styles.flatIcon}
-										/>
-									</View>
-								</View>
-							</View>
-						</TouchableOpacity>
-					</View> */}
 				</View>
 			</ScrollView>
 			{/* <Loading loading={loading} /> */}

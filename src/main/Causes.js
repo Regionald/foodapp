@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { Colors, Fonts, windowWidth } from '../../utils/util';
 import Feather from '@expo/vector-icons/Feather';
-import Startquize from '../components/startquiz'
+import Startquize from '../components/startquiz';
 // import * as Speech from 'expo-speech';
 
 const useMountedState = () => {
@@ -35,7 +35,7 @@ const logFun = () => {
 
 
 
-const Causes = () => {
+const Causes = ({ navigation }) => {
 	let isMounted = useMountedState();
 	const [refreshing, setRefreshing] = useState(false);
 	// const [speech, setSpeech] = useState({
