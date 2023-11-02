@@ -5,7 +5,12 @@ import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 
 const WordSearch = () => {
 
-  const hower = Gesture.Fling();
+  const hower = Gesture.Tap();
+
+  const handleTap = event => {
+    console.log('Tap gesture detected!', event.nativeEvent);
+  };
+
 
   const gridSize = 9;
   const [grid, setGrid] = useState([]);
@@ -241,7 +246,7 @@ const WordSearch = () => {
                   // >
                   //     <Text>{cell}</Text>
                   // </TouchableOpacity>
-                  <GestureDetector gesture={hower}>
+                  <GestureDetector gesture={hower} onGestureEvent={handleTap}>
 
                     <TouchableOpacity
                       key={y}
