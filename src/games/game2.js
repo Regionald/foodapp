@@ -16,9 +16,6 @@ import {
 
 const windowHeight = Dimensions.get('window').height;
 
-
-
-
 const windowWidth = Dimensions.get('window').width;
 const Game = () => {
 

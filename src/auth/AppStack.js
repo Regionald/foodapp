@@ -39,17 +39,16 @@ export default function () {
 
         <Stack.Navigator>
 
-            <Stack.Screen name='Game6'
-                component={Game6}
+            <Stack.Screen name='Game1'
+                component={Game1}
                 options={{ header: () => null }} />
 
             <Stack.Screen name='Home'
                 component={HomeScreen}
                 options={{ header: () => null }} />
 
-
-            <Stack.Screen name='Game1'
-                component={Game1}
+            <Stack.Screen name='Game6'
+                component={Game6}
                 options={{ header: () => null }} />
 
             <Stack.Screen name='Game5'

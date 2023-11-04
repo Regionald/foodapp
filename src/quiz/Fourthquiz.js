@@ -58,7 +58,7 @@ const Quiz = ({ navigation }) => {
 
         update_quiz('Prevention', memo, score);
 
-        if (score <= 80) {
+        if (score < 80) {
 
 
             Alert.alert('Score Board', `You got ${score} %`, [

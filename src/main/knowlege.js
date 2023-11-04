@@ -38,45 +38,6 @@ const Nutrition = ({ navigation }) => {
 		rate: 0.75,
 	});
 
-	const whatToSay = `	
-		Nutrients.
-		They provide the body with the fuel to perform day-to-day functions. 
-		The essential nutrients are carbohydrates, proteins , fats and oil, vitamins, minerals, and water.
-		
-		Macronutrients.
-		Carbohydrates, fat and protein are called macronutrients. They are
-		the nutrients you use in the largest amounts. "Macronutrients are
-		the nutritive components of food that the body needs for energy and
-		to maintain the body's structure and systems," says MD Anderson
-		Wellness Dietitian Lindsey Wohlford.
-
-		Carbohydrates.
-		These is the body’s powerhouse and provides the body with energy from calories to function.
-		A few main sources of carbohydrates, also high in fibre, include wheat, maise, rice, fruit, and vegetables. 
-		The energy form of carbohydrates found in these sources is a sugar known as glucose, which all tissue and cells use. 
-		
-
-		Fats and Oils.
-		This is a concentrated form of energy. They allow joints to loosen, reduce inflammation and enable the absorption of certain vitamins.
-		There are 2 types, saturated and unsaturated. Saturated is solid at room temperature, unhealthy, and mainly found in animal sources, for example, pork fat.
-		Unsaturated are liquid at room temperature, healthier and generally found from plant sources, for example, avocado
-		
-		Proteins.
-		These are essential for growth and repair in the body. 
-		They are the building blocks and play an important role in making hormones and repairing tissue and may supply the body with energy if carbohydrates are limited. 
-		A few common sources include animal proteins such as eggs, beef, and poultry and plant proteins such as soya, beans, and ground nuts. 
-
-		Vitamins and Minerals.
-		These are needed in smaller quantities but are crucial in daily processes, known as protective nutrients, required to preserve immune functionality. 
-		Vitamins (except vitamin D) and minerals cannot be produced in the body; therefore, they must be eaten. Sources include fruits, vegetables, dairy products, and fish.
-	
-		Water.
-		The adult human body is up to 60% water. The body would only be able to survive a few days without water. 
-		Water is essential in building cells, carrying waste, cooling the body, etc.
-		It is recommended for children between ages 5 and 12 to drink 1 to 1.5litres a day and for anyone over 13 to drink at least 2 litres a day. 
-
-
-	`;
 
 	// const speak = () => {
 	// 	const start = () => {
@@ -153,16 +114,16 @@ const Nutrition = ({ navigation }) => {
 				}
 			>
 				<Text style={styles.bold}>Let's Get Started</Text>
-				<Text style={styles.heading}>Learn more about nutritions</Text>
+				<Text style={styles.heading}>Learn more about Food waste general knowledge and understanding</Text>
 
-				<View style={styles.flexBtn}>
+				{/* <View style={styles.flexBtn}>
 					<TouchableOpacity
 						style={styles.controllbtn}
 						onPress={() => decreaseRate()}
 					>
 						<Feather name='rewind' color={Colors.Primary} size={20} />
 					</TouchableOpacity>
-					{/* {speech.inProgress ? (
+					{speech.inProgress ? (
 						<TouchableOpacity style={styles.controllbtn} onPress={() => stop()}>
 							<Feather name='pause' color={Colors.Primary} size={20} />
 						</TouchableOpacity>
@@ -173,7 +134,7 @@ const Nutrition = ({ navigation }) => {
 						>
 							<Feather name='play' color={Colors.Primary} size={20} />
 						</TouchableOpacity>
-					)} */}
+					)}
 
 					<TouchableOpacity
 						style={styles.controllbtn}
@@ -181,10 +142,13 @@ const Nutrition = ({ navigation }) => {
 					>
 						<Feather name='fast-forward' color={Colors.Primary} size={20} />
 					</TouchableOpacity>
-				</View>
+				</View> */}
 
 				<View style={styles.info}>
-					<Text style={styles.heading}>Nutrients?</Text>
+					<View><Text>
+						{"\n"}
+					</Text></View>
+					<Text style={styles.heading}>Food waste is food that is left uneaten.</Text>
 					<View style={styles.imagecontainer}>
 						<Image
 							source={require('../../assets/Nutrients.jpg')}
@@ -192,23 +156,62 @@ const Nutrition = ({ navigation }) => {
 						/>
 					</View>
 					<Text style={styles.graytext}>
-						They provide the body with the fuel to perform day-to-day functions.
-						The essential nutrients are carbohydrates, proteins, fats and oil,
-						vitamins, minerals, and water.
+						Food waste can be <Text style={{ fontWeight: 'bold' }}>edible</Text> or <Text style={{ fontWeight: 'bold' }}>inedible</Text>.{"\n"}
+						<Text>
+							{"\n"}
+						</Text>
+						<Text style={{ fontWeight: 'bold' }}>Edible</Text> means that it is still safe and able to be eaten, like if you dish up too much and leave food on your plate.{"\n"}
+						<Text>
+							{"\n"}
+						</Text>
+						<Text style={{ fontWeight: 'bold' }}>Inedible</Text> is either unsafe or cannot be eaten further. Things such as bones and certain vegetable peels.
+
 					</Text>
-				</View>
-				<View style={styles.info}>
-					<Text style={styles.heading}>Macronutrients</Text>
+
 					<Text style={styles.graytext}>
-						Carbohydrates, fat and protein are called macronutrients. They are
-						the nutrients you use in the largest amounts. "Macronutrients are
-						the nutritive components of food that the body needs for energy and
-						to maintain the body's structure and systems," says MD Anderson
-						Wellness Dietitian Lindsey Wohlford.
+						<Text>
+							{"\n"}
+						</Text>
+
+						It is said that almost 1/3rd or 30% of all the food produces to be eaten goes wasted.
+						This means that more than 2 billion people could be fed with the amount of food we waste.
+						This is over 1.3 billion tonnes of fruits, vegetables, dairy, seafood and grains.
+
+					</Text>
+
+					<Text style={styles.graytext}>
+						<Text>
+							{"\n"}
+						</Text>
+						If food waste were to reduced, this would improve society as levels of food insecurity and malnutrition would decrease.
+						This wasted food is caused throughout the food supply chain (FSC) for various reasons like:{"\n"}
+					</Text>
+					<Text style={styles.graytext}>1)	On the farms due to poor harvesting{"\n"}</Text>
+					<Text style={styles.graytext}>2)	At manufacturers and distributors due to poor handling and transportation{"\n"}</Text>
+					<Text style={styles.graytext}>3)	 At retailers due to poor storage and supply/demand trends{"\n"}</Text>
+					<Text style={styles.graytext}>4)	Or at consumers due to overconsumptions and poor consumption behaviours{"\n"}</Text>
+				</View>
+				<View style={styles.info}>
+					<Text style={styles.heading}>
+
+						This wasted food could be enough to end world hunger and feed every starving person on the planet.
+						Globally food waste waste’s money. Money spent on growing, processing, storing and disposing of the food w=that was never eaten.
+
+					</Text>
+
+					<Text>
+						{"\n"}
+					</Text>
+					<Text style={styles.graytext}>
+						In South Africa 10 million tonnes of food are wasted each year Of this, 70% of the foods that are wasted are fruits, vegetables and cereals.
+						This is an annually loss of R61,5 billion rand according to the Council for Scientific and Industrial Research
+						The wasted food in South Africa leads to a wasted energy that was used to produce these foods. It is said that this wasted energy could light up the City of Johannesburg for 16 weeks!
+						The wasted water could fill 600 000 Olympic sized swimming pools. All this wasted food ends up in landfills whereas the food rot they produce greenhouse gases that affect the environment.
+
 					</Text>
 				</View>
 				<View style={styles.info}>
-					<Text style={styles.heading}>Carbohydrates</Text>
+
 					<View style={styles.imagecontainer}>
 						<Image
 							source={require('../../assets/Carbohydrates.jpg')}
@@ -216,78 +219,49 @@ const Nutrition = ({ navigation }) => {
 						/>
 					</View>
 					<Text style={styles.graytext}>
-						These are the body’s powerhouse and provides the body with energy
-						from calories to function. A few main sources of carbohydrates, also
-						high in fibre, include wheat, maise, rice, fruit, and vegetables.
-						The energy form of carbohydrates found in these sources is a sugar
-						known as glucose, which all tissue and cells use.
+						Food waste is the prominent items to end up in landfills which then get incinerated (burned).
+						Wasted food therefore poots a lot of strain on natural resources like water, land, labour and energy.
+						Consumers food waste patterns is at least 8 times more costly than those of farms.
+						<Text>
+							{"\n"}
+						</Text>
+
+						<Text style={{ fontWeight: 'bold' }}>
+						<Text>
+							{"\n"}
+						</Text>
+
+							Consumers do not necessarily see food waste as a problem for them to solve:
+
+						</Text>
+
+
+					</Text>
+
+					<Text style={styles.graytext}>
+						1)	When eating out, you pay for the food, so you assume all other responsibilities are not your problem.{"\n"}
+						2)	Younger generations are more concerned about food waste as they are generally more worried about the effects on the environment.{"\n"}
+						
+						<Text style={{ fontWeight: 'bold' }}>Money is a motivator:{"\n"}</Text>
+						
+						1) People will think about preventing food waste only if its of benefit to them.{"\n"}
+						2) If there is a way that money will be saved, then food waste will try to be avoided.{"\n"}
+						<Text style={{ fontWeight: 'bold' }}>
+						 Food waste is an economic issue.{"\n"}
+
+						</Text>
+						
+						1) Money used to dispose of food waste comes directly for consumers through tax.{"\n"}
+						2) The less food wasted; the less money is spent on trying to treat the waste.{"\n"}
+
+						<Text style={{ fontWeight: 'bold' }}>Food waste is a social issue.{"\n"}</Text>
+						1) Billions go hungry each day without access to food.{"\n"}
+						2) There is enough food being produced, it is simply being improperly handled or carelessly wasted.{"\n"}
+
+
 					</Text>
 				</View>
 
-				<View style={styles.info}>
-					<Text style={styles.heading}>Fats And Oil</Text>
-					<View style={styles.imagecontainer}>
-						<Image
-							source={require('../../assets/FatsAndOil.jpg')}
-							style={styles.image}
-						/>
-					</View>
-					<Text style={styles.graytext}>
-						These are a concentrated form of energy. They allow joints to
-						loosen, reduce inflammation and enable the absorption of certain
-						vitamins. There are 2 types, saturated and unsaturated. Saturated is
-						solid at room temperature, unhealthy, and mainly found in animal
-						sources, for example, pork fat. Unsaturated are liquid at room
-						temperature, healthier and generally found from plant sources, for
-						example, avocado
-					</Text>
-				</View>
-
-				<View style={styles.info}>
-					<Text style={styles.heading}>Proteins</Text>
-					<View style={styles.imagecontainer}>
-						<Image
-							source={require('../../assets/Proteins.jpg')}
-							style={styles.image}
-						/>
-					</View>
-					<Text style={styles.graytext}>
-						These are essential for growth and repair in the body. They are the
-						building blocks and play an important role in making hormones and
-						repairing tissue and may supply the body with energy if
-						carbohydrates are limited. A few common sources include animal
-						proteins such as eggs, beef, and poultry and plant proteins such as
-						soya, beans, and ground nuts.
-					</Text>
-				</View>
-
-				<View style={styles.info}>
-					<Text style={styles.heading}>Vitamins and Minerals</Text>
-					<View style={styles.imagecontainer}>
-						<Image
-							source={require('../../assets/VitaminsAndMinerals.jpg')}
-							style={styles.image}
-						/>
-					</View>
-					<Text style={styles.graytext}>
-						These are needed in smaller quantities but are crucial in daily
-						processes, known as protective nutrients, required to preserve
-						immune functionality. Vitamins (except vitamin D) and minerals
-						cannot be produced in the body; therefore, they must be eaten.
-						Sources include fruits, vegetables, dairy products, and fish.
-					</Text>
-				</View>
-
-				<View style={styles.info}>
-					<Text style={styles.heading}>Water</Text>
-					<Text style={styles.graytext}>
-						The adult human body is up to 60% water. The body would only be able
-						to survive a few days without water. Water is essential in building
-						cells, carrying waste, cooling the body, etc. It is recommended for
-						children between ages 5-12 to drink 1-1.5litres a day and for anyone
-						over 13 to drink at least 2 litres a day.
-					</Text>
-				</View>
 				<Startquize title='Take a quiz' onPress={() => navigation.navigate('Secondquiz')} />
 				<Text>
 					{"\n"}

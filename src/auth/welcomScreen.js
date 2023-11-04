@@ -42,7 +42,6 @@ const WelcomeScreen = ({ navigation }) => {
 				/>
 
 				<Text style={styles.heading}>Food Wastage</Text>
-				<Text style={styles.subHeading}>Share Food</Text>
 				<Text style={styles.text}>
 					We are here to help you share your food with the needy
 				</Text>

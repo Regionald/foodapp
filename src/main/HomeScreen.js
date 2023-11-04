@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
 		overflow: 'hidden',
 	},
 	title: {
-		height: '20%',
+		height: '30%',
 		fontSize: 14,
 		fontFamily: Fonts.Semibold,
 		color: Colors.Light,
@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.Secondary,
 	},
 	title2: {
-		height: '20%',
+		height: '30%',
 		fontSize: 14,
 		fontFamily: Fonts.Semibold,
 		color: Colors.Light,

@@ -1,7 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions, SafeAreaView, ScrollView } from 'react-native';
+import { PanGestureHandler, Gesture } from 'react-native-gesture-handler';
+
+
+
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
+const cell_width = windowWidth / 9;
+const cell_X2 = 2 * cell_width;
+const cell_X3 = 3 * cell_width;
+const cell_X4 = 4 * cell_width;
+const cell_X5 = 5 * cell_width;
+const cell_X6 = 6 * cell_width;
+const cell_X7 = 7 * cell_width;
+const cell_X8 = 8 * cell_width;
+const cell_X9 = 9 * cell_width;
+
+
+const cell_Y2 = 2 * cell_width;
+const cell_Y3 = 3 * cell_width;
+const cell_Y4 = 4 * cell_width;
+const cell_Y5 = 5 * cell_width;
+const cell_Y6 = 6 * cell_width;
+const cell_Y7 = 7 * cell_width;
+const cell_Y8 = 8 * cell_width;
+const cell_Y9 = 9 * cell_width;
+
+const row_pan = [cell_width, cell_X2, cell_X3, cell_X4, cell_X5, cell_X6, cell_X7, cell_X8, cell_X9];
+const column_pan = [cell_width, cell_Y2, cell_Y3, cell_Y4, cell_Y5, cell_Y6, cell_Y7, cell_Y8, cell_Y9]
+
 
 const WordSearch = () => {
+
+
+
+
 
   const gridSize = 9;
   const [grid, setGrid] = useState([]);
@@ -10,6 +43,7 @@ const WordSearch = () => {
   const [permCells, setPermCells] = useState([]);
   const [formed_Word, setFormed_word] = useState([]);
   const wordsToInsert = ["STORAGE", "RICH", "EXPENSIVE", "SURPLUS", "PROTEIN", "EXCESS"];
+  const myViewRef = useRef(null);
 
 
   useEffect(() => {
@@ -118,11 +152,7 @@ const WordSearch = () => {
       const prev_x = newSelectedCells[newSelectedCells.length - 2][0];
       const prev_y = newSelectedCells[newSelectedCells.length - 2][1];
 
-      const check_Word = (word_input, list) => {
-        if (wordsToInsert.includes(word_input)) {
-          console.log('The word is in the list', word_input);
-        }
-      };
+
 
       //calculate the constant
       var constant_Handler = () => {
@@ -138,8 +168,6 @@ const WordSearch = () => {
 
           new_formed_Word = [char];
           setFormed_word(new_formed_Word);
-
-          check_Word(new_formed_Word);
         };
       }
 
@@ -170,6 +198,38 @@ const WordSearch = () => {
   };
 
 
+  const handlePan = event => {
+
+
+    const Y_input = event.nativeEvent.translationY;
+    const X_input = event.nativeEvent.translationX;
+
+    const row_index = row_pan.findIndex(value => value > X_input);
+    const column_index = column_pan.findIndex(value => value > Y_input);
+
+
+    const char = grid[row_index][column_index];
+    console.log('chara', char);
+    console.log(column_index,row_index);
+
+    handleCellSelect(column_index,row_index, char);
+
+
+    if (event.nativeEvent.translationX > 0 && event.nativeEvent.translationX < cell_width) {
+
+      console.log('row 1')
+
+    }
+
+    if (event.nativeEvent.translationX > cell_width && event.nativeEvent.translationX < cell_X2) {
+
+      console.log('row 2')
+
+    }
+
+
+
+  };
 
 
   return <SafeAreaView>
@@ -216,36 +276,50 @@ const WordSearch = () => {
 
       </View>
 
+      <View ref={myViewRef}>
+
+        <PanGestureHandler onGestureEvent={handlePan}>
+          <View style={styles.grid}>
+            {
+              grid.map((row, x) => (
+
+                <View key={x} style={styles.row}>
+                  {row.map((cell, y) => (
+                    <TouchableOpacity
+                      key={y}
+                      style={[
+                        styles.cell,
+                        selectedCells.some(([i, j]) => i === x && j === y) && styles.selected,
+                      ]}
+
+                    // onMoveShouldSetResponder={() => true}
+                    // onPress={() => handleCellSelect(x, y, cell)}
+
+                    >
+                      <Text>{cell}</Text>
+                    </TouchableOpacity>
+
+                  ))}
+                </ View>
+              ))
+            }
+
+          </View>
+
+        </PanGestureHandler>
+
+
+      </View>
+
       <View style={styles.container}>
-        <View style={styles.grid}>
-          {
-            grid.map((row, x) => (
 
-              <View key={x} style={styles.row}>
-                {row.map((cell, y) => (
-                  <TouchableOpacity
-                    key={y}
-                    style={[
-                      styles.cell,
-                      selectedCells.some(([i, j]) => i === x && j === y) && styles.selected,
-                    ]}
-                    onMoveShouldSetResponder={() => true}
-                    onPress={() => handleCellSelect(x, y, cell)}
-                  >
-                    <Text>{cell}</Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            ))
-          }
 
-        </View>
 
 
         <Text style={styles.header}>{formed_Word.join('')}</Text>
       </View>
     </ScrollView>
-  </SafeAreaView>
+  </SafeAreaView >
 
 };
 
@@ -368,8 +442,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   cell: {
-    width: 40,
-    height: 40,
+    width: windowWidth / 9,
+    height: windowWidth / 9,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -382,3 +456,4 @@ const styles = StyleSheet.create({
   },
 });
 export default WordSearch;
+

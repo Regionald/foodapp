@@ -61,7 +61,7 @@ const Quiz = ({ navigation }) => {
         score = ((score / memo.length) * 100).toFixed(2);
 
         update_quiz('Causes',memo,score);
-        if (score <= 80) {
+        if (score < 80) {
 
 
 
