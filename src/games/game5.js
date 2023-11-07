@@ -70,6 +70,8 @@ const Game = ({ navigation }) => {
 
     const Mark = (option) => {
 
+        console.log('currentQuestionIndex',currentQuestionIndex);
+
         const currentQuestion = examData[currentQuestionIndex];
         if (option === currentQuestion.correct_answer) {
             setScore(score + 1);
@@ -88,19 +90,7 @@ const Game = ({ navigation }) => {
         if (currentQuestionIndex + 1 < examData.length) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
-        else {
-            return <SafeAreaView >
-                <ScrollView showsVerticalScrollIndicator={false} >
-
-                    <View style={styles.GameWon}>
-
-                        <Text style={styles.SorryMsg}>congratulations</Text>
-                        <Text style={styles.GameLost}>You won</Text>
-                    </View>
-
-                </ScrollView>
-            </SafeAreaView>
-        }
+       
     };
 
     if (chances < 0) {
@@ -108,7 +98,12 @@ const Game = ({ navigation }) => {
         return <SafeAreaView >
             <ScrollView showsVerticalScrollIndicator={false} >
 
-                <View style={styles.Gamelost}>
+                <View onLayout={() => {
+                console.log('This has mounted')
+                setTimeout(() => {
+                    navigation.navigate('Home'); // Replace 'NextScreen' with the name of the screen you want to navigate to.
+                }, 1000);
+            }} style={styles.Gamelost}>
 
                     <Text style={styles.SorryMsg}>Sorry</Text>
                     <Text style={styles.GameLost}>Game Lost</Text>
@@ -119,7 +114,7 @@ const Game = ({ navigation }) => {
 
     }
 
-    if (currentQuestionIndex <examData.length) {
+   else if (score<5) {
         return <SafeAreaView >
             <ScrollView showsVerticalScrollIndicator={false} >
                 <View>
@@ -133,7 +128,7 @@ const Game = ({ navigation }) => {
                     </View>
                     <View style={styles.GameInfo}>
 
-                        <Text style={styles.GameTxt}>Daily Anagram</Text>
+                        <Text style={styles.GameTxt}>Matching Tiles</Text>
                     </View>
 
                     <View style={styles.points}>
@@ -184,10 +179,18 @@ const Game = ({ navigation }) => {
             </ScrollView>
         </SafeAreaView>
     }
-    return <SafeAreaView >
+    else{
+        return <SafeAreaView >
         <ScrollView showsVerticalScrollIndicator={false} >
 
-            <View style={styles.GameWon}>
+            <View onLayout={() => {
+                console.log('This has mounted')
+                setTimeout(() => {
+                    navigation.navigate('Home'); // Replace 'NextScreen' with the name of the screen you want to navigate to.
+                }, 1000);
+            }} style={styles.GameWon}>
+
+            <Text style={styles.SorryMsg}>5</Text>
 
                 <Text style={styles.SorryMsg}>congratulations</Text>
                 <Text style={styles.GameLost}>You won</Text>
@@ -195,12 +198,10 @@ const Game = ({ navigation }) => {
 
         </ScrollView>
     </SafeAreaView>
+    }
+   
 
 };
-
-
-
-
 
 export default Game;
 
@@ -243,7 +244,7 @@ const styles = StyleSheet.create({
     },
     SorryMsg: {
 
-        fontSize: 80,
+        fontSize: 50,
     },
     GameLost: {
 

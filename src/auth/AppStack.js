@@ -39,6 +39,25 @@ export default function () {
 
         <Stack.Navigator>
 
+
+            <Stack.Screen name='Game6'
+                component={Game6}
+                options={{ header: () => null }} />
+
+
+            <Stack.Screen name='Game5'
+                component={Game5}
+                options={{ header: () => null }} />
+
+            <Stack.Screen name='Game3'
+                component={Game3}
+                options={{ header: () => null }} />
+
+
+            <Stack.Screen name='Game4'
+                component={Game4}
+                options={{ header: () => null }} />
+
             <Stack.Screen name='Game1'
                 component={Game1}
                 options={{ header: () => null }} />
@@ -47,21 +66,7 @@ export default function () {
                 component={HomeScreen}
                 options={{ header: () => null }} />
 
-            <Stack.Screen name='Game6'
-                component={Game6}
-                options={{ header: () => null }} />
 
-            <Stack.Screen name='Game5'
-                component={Game5}
-                options={{ header: () => null }} />
-
-            <Stack.Screen name='Game4'
-                component={Game4}
-                options={{ header: () => null }} />
-
-            <Stack.Screen name='Game3'
-                component={Game3}
-                options={{ header: () => null }} />
 
             <Stack.Screen name='Profile'
                 component={profile}

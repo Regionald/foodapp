@@ -10,6 +10,7 @@ import {
     StatusBar,
     Dimensions,
     ScrollView,
+    Image,
 } from 'react-native';
 // import { Colors, Fonts, windowHeight, windowWidth } from '../../utils/util';
 import { Table, TableWrapper, Col, Cols } from 'react-native-table-component';
@@ -57,8 +58,7 @@ const remainingTime = 0;
 
 const Game = ({ navigation }) => {
 
-
-
+    const [score, setScore] = useState(0);
 
     const ref0 = useRef(null);
     const ref1 = useRef(null);
@@ -123,6 +123,66 @@ const Game = ({ navigation }) => {
 
     var shouldRunEffect = false;
 
+    const refresher = [{ input_Value: '', correct_Value: 'F', status: '', index: 0 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 1 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 2 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 3 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 4 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 5 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 6 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 7 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 8 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 9 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 10 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 11 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 12 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 13 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 14 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 15 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 16 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 17 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 18 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 19 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 20 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 21 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 22 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 23 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 24 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 25 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 26 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 27 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 28 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 29 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 30 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 31 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 32 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 33 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 34 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 35 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 36 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 37 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 38 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 39 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 40 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 41 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 42 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 43 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 44 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 45 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 46 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 47 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 48 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 49 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 50 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 51 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 52 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 53 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 54 },
+    { input_Value: '', correct_Value: 'R', status: '', index: 55 },
+    { input_Value: '', correct_Value: 'E', status: '', index: 56 },
+    { input_Value: '', correct_Value: 'S', status: '', index: 57 },
+    { input_Value: '', correct_Value: 'H', status: '', index: 58 }]
+
     const [puzzle_Data, setPuzzleData] = useState([{ input_Value: '', correct_Value: 'F', status: '', index: 0 },
     { input_Value: '', correct_Value: 'R', status: '', index: 1 },
     { input_Value: '', correct_Value: 'E', status: '', index: 2 },
@@ -184,6 +244,18 @@ const Game = ({ navigation }) => {
     { input_Value: '', correct_Value: 'H', status: '', index: 58 }])
 
     const [hint, setHint] = useState('');
+    const [correct_word, setCorrectWord] = useState([]);
+
+
+    const Refresh = () => {
+
+
+        console.log('The refresh botton is pressed neh');
+        setScore(0);
+        setPuzzleData(refresher);
+
+
+    }
 
 
     const validate = (index, char, inputRef, nextRef) => {
@@ -200,12 +272,17 @@ const Game = ({ navigation }) => {
 
             setTimeout(() => {
 
-                inputRef.current.blur();
-                nextRef.current.focus();
-            }, 2500);
+                try {
 
-        }
+                    inputRef.current.blur();
+                    nextRef.current.focus();
 
+                } catch (error) {
+                    console.log(error)
+                }
+            }, 500);
+
+        };
 
         Fresh(puzzle_Data[0].input_Value,
             puzzle_Data[1].input_Value,
@@ -227,7 +304,6 @@ const Game = ({ navigation }) => {
             updatepuzzle[41].input_Value,
             updatepuzzle[43].input_Value
         );
-
 
         PACKAGING(updatepuzzle[5].input_Value,
             updatepuzzle[8].input_Value,
@@ -279,7 +355,6 @@ const Game = ({ navigation }) => {
 
     const FIFO = (char_1, char_2, char_3, char_4) => {
         var formed_Word = char_1 + char_2 + char_3 + char_4;
-        console.log(formed_Word);
 
         const updatepuzzle = [...puzzle_Data];
 
@@ -289,6 +364,14 @@ const Game = ({ navigation }) => {
             updatepuzzle[45].status = 'correct';
             updatepuzzle[46].status = 'correct';
             updatepuzzle[47].status = 'correct';
+
+            if (!correct_word.includes('FIFO')) {
+
+                setCorrectWord([...correct_word, 'FIFO']);
+                setScore(score + 4);
+
+            }
+
         }
         else {
 
@@ -314,6 +397,11 @@ const Game = ({ navigation }) => {
             updatepuzzle[3].status = 'correct';
             updatepuzzle[4].status = 'correct';
 
+            if (!correct_word.includes('FRESH')) {
+                setCorrectWord([...correct_word, 'FRESH']);
+                setScore(score + 5);
+
+            }
 
         }
         else {
@@ -345,18 +433,11 @@ const Game = ({ navigation }) => {
             updatepuzzle[33].status = 'correct'; //
             updatepuzzle[34].status = 'correct'; //
 
-            return <SafeAreaView >
-            <ScrollView showsVerticalScrollIndicator={false} >
+            if (!correct_word.includes('FREEZER')) {
 
-                <View style={styles.GameWon}>
-
-                    <Text style={styles.SorryMsg}>congratulations</Text>
-                    <Text style={styles.GameLost}>You won</Text>
-                </View>
-
-            </ScrollView>
-        </SafeAreaView>
-
+                setCorrectWord([...correct_word, 'FREEZER']);
+                setScore(score + 7);
+            }
         }
         else {
 
@@ -388,6 +469,14 @@ const Game = ({ navigation }) => {
             updatepuzzle[11].status = 'correct'; //
             updatepuzzle[12].status = 'correct'; //
             updatepuzzle[13].status = 'correct';
+
+
+            if (!correct_word.includes('LANDFILL')) {
+
+                setCorrectWord([...correct_word, 'LANDFILL']);
+                setScore(score + 8);
+            }
+
 
         }
         else {
@@ -421,6 +510,12 @@ const Game = ({ navigation }) => {
             updatepuzzle[27].status = 'correct'; //
             updatepuzzle[35].status = 'correct';//
             updatepuzzle[38].status = 'correct'; //
+            if (!correct_word.includes('PACKAGING')) {
+
+                setCorrectWord([...correct_word, 'PACKAGING']);
+                setScore(score + 9);
+
+            }
 
         }
         else {
@@ -458,6 +553,10 @@ const Game = ({ navigation }) => {
             updatepuzzle[47].status = 'correct'; //T
             updatepuzzle[48].status = 'correct';//O
 
+            if (!correct_word.includes('PREPARATION')) {
+                setCorrectWord([...correct_word, 'PREPARATION']);
+                setScore(score + 11);
+            }
         }
         else {
 
@@ -497,7 +596,10 @@ const Game = ({ navigation }) => {
             updatepuzzle[41].status = 'correct';//O
             updatepuzzle[43].status = 'correct'; //R
 
-
+            if (!correct_word.includes('REFRIGERATOR')) {
+                setCorrectWord([...correct_word, 'REFRIGERATOR']);
+                setScore(score + 12);
+            }
         }
         else {
 
@@ -517,541 +619,585 @@ const Game = ({ navigation }) => {
         setPuzzleData(updatepuzzle);
     };
 
+
+
     useEffect(() => {
 
 
-        console.log(puzzle_Data);
+        console.log(correct_word);
+        console.log(correct_word.length);
 
 
-    }, [puzzle_Data]);
+    }, [puzzle_Data, correct_word]);
 
-    return <SafeAreaView >
-        <ScrollView showsVerticalScrollIndicator={false} >
-            <View>
+    if (correct_word.length > 6) {
+        return <SafeAreaView>
+
+            <ScrollView showsVerticalScrollIndicator={false} >
+
+                <View onLayout={() => {
+                    console.log('This has mounted')
+                    setTimeout(() => {
+                        navigation.navigate('Home'); // Replace 'NextScreen' with the name of the screen you want to navigate to.
+                    }, 1000);
+                }
+                } style={styles.GameWon}>
+                    
+                    <Text style={styles.points}>{score}</Text>
+
+                    <Text style={styles.SorryMsg}>congratulations</Text>
+                    <Text style={styles.GameLost}>You won</Text>
+                </View>
+
+            </ScrollView>
+
+        </SafeAreaView>
+
+    }
+    else {
+
+        return <SafeAreaView >
+            <ScrollView showsVerticalScrollIndicator={false} >
                 <View>
+                    <View>
 
-                    <StatusBar
-                        statusbarStyle='light-content'
-                        backgroundColor={Colors.Primary}
-                    />
+                        <StatusBar
+                            statusbarStyle='light-content'
+                            backgroundColor={Colors.Primary}
+                        />
+
+                    </View>
+
+
+                    <View style={styles.hr}>
+                        <Text style={{ color: '#1d5c4d',fontSize:25, }}>{" "}SCORE:{score}</Text>
+
+                    </View>
+
+                    <View style={styles.hint}>
+
+                        <Text style={styles.hintTxt}>{hint}</Text>
+                    </View>
+
+                    <View style={styles.container}>
+
+
+                        {/* First row  */}
+
+                        <Pressable key={1} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={2} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={3} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={4} style={[styles.input_cell, { backgroundColor: puzzle_Data[0].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput placeholder="1" ref={ref0} value={puzzle_Data[0].input_Value} onFocus={() => setHint('Hint: Something that is not rotten.')} maxlength={1} onChangeText={(char) => validate(0, char, ref0, ref1)} />
+                        </Pressable>
+
+                        <Pressable key={5} style={[styles.input_cell, { backgroundColor: puzzle_Data[1].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput placeholder="2" ref={ref1} value={puzzle_Data[1].input_Value} onFocus={() => setHint('Hint: A place where you keep food cold ')} maxlength={1} onChangeText={(char) => validate(1, char, ref1, ref2)} />
+                        </Pressable>
+
+                        <Pressable key={6} style={[styles.input_cell, { backgroundColor: puzzle_Data[2].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[2].input_Value} ref={ref2} maxlength={1} onChangeText={(char) => validate(2, char, ref2, ref3)} />
+                        </Pressable>
+
+                        <Pressable key={7} style={[styles.input_cell, { backgroundColor: puzzle_Data[3].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[3].input_Value} ref={ref3} maxlength={1} onChangeText={(char) => validate(3, char, ref3, ref4)} />
+                        </Pressable>
+                        <Pressable key={8} style={[styles.input_cell, { backgroundColor: puzzle_Data[4].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[4].input_Value} ref={ref4} maxlength={1} onChangeText={(char) => validate(4, char, ref5, ref6)} />
+                        </Pressable>
+
+                        <Pressable key={9} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={10} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        {/* second  row*/}
+
+                        <Pressable key={11} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={12} style={[styles.input_cell, { backgroundColor: puzzle_Data[5].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput placeholder="3" value={puzzle_Data[5].input_Value} ref={ref5} onFocus={() => setHint('Hint: Material used to protect and wrap things.')} maxlength={1} onChangeText={(char) => validate(5, char, ref5, ref8)} />
+                        </Pressable>
+
+                        <Pressable key={13} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={14} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={15} style={[styles.input_cell, { backgroundColor: puzzle_Data[6].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[6].input_Value} ref={ref6} maxlength={1} onChangeText={(char) => validate(6, char, ref6, ref10)} />
+                        </Pressable>
+                        <Pressable key={16} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={17} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={18} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={19} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={20} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        {/* third  row*/}
+
+
+                        <Pressable key={21} style={[styles.input_cell, { backgroundColor: puzzle_Data[7].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput placeholder="4" value={puzzle_Data[7].input_Value} ref={ref7} onFocus={() => setHint('Hint: A big dump where waste is thrown .')} maxlength={1} onChangeText={(char) => validate(7, char, ref7, ref58)} />
+                        </Pressable>
+
+                        <Pressable key={22} style={[styles.input_cell, { backgroundColor: puzzle_Data[8].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[8].input_Value} maxlength={1} ref={ref8} onChangeText={(char) => validate(8, char, ref8, ref15)} />
+                        </Pressable>
+
+                        <Pressable key={23} style={[styles.input_cell, { backgroundColor: puzzle_Data[58].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[58].input_Value} maxlength={1} ref={ref58} onChangeText={(char) => validate(58, char, ref58, ref9)} />
+                        </Pressable>
+
+                        <Pressable key={24} style={[styles.input_cell, { backgroundColor: puzzle_Data[9].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[9].input_Value} maxlength={1} ref={ref9} onChangeText={(char) => validate(9, char, ref9, ref11)} />
+                        </Pressable>
+                        <Pressable key={25} style={[styles.input_cell, { backgroundColor: puzzle_Data[10].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[10].input_Value} maxlength={1} ref={ref10} onChangeText={(char) => validate(10, char, ref10, ref16)} />
+                        </Pressable>
+                        <Pressable key={26} style={[styles.input_cell, { backgroundColor: puzzle_Data[11].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[11].input_Value} maxlength={1} ref={ref11} onChangeText={(char) => validate(11, char, ref11, ref12)} />
+                        </Pressable>
+                        <Pressable key={27} style={[styles.input_cell, { backgroundColor: puzzle_Data[12].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[12].input_Value} maxlength={1} ref={ref12} onChangeText={(char) => validate(12, char, ref12, ref13)} />
+                        </Pressable>
+                        <Pressable key={28} style={[styles.input_cell, { backgroundColor: puzzle_Data[13].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[13].input_Value} maxlength={1} ref={ref13} onChangeText={(char) => validate(13, char, ref13, ref14)} />
+                        </Pressable>
+
+                        <Pressable key={29} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={30} style={[styles.input_cell, { backgroundColor: puzzle_Data[14].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput placeholder="5" ref={ref14} value={puzzle_Data[14].input_Value} onFocus={() => setHint('Hint: How to make food?')} maxlength={1} onChangeText={(char) => validate(14, char, ref14, ref17)} />
+                        </Pressable>
+
+                        {/* Fouth  row*/}
+
+                        <Pressable key={31} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={32} style={[styles.input_cell, { backgroundColor: puzzle_Data[15].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[15].input_Value} ref={ref15} maxlength={1} onChangeText={(char) => validate(15, char, ref15, ref18)} />
+                        </Pressable>
+
+                        <Pressable key={33} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={34} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={35} style={[styles.input_cell, { backgroundColor: puzzle_Data[16].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[16].input_Value} maxlength={1} ref={ref16} onChangeText={(char) => validate(16, char, ref16, ref19)} />
+                        </Pressable>
+                        <Pressable key={36} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={37} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={38} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={39} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={40} style={[styles.input_cell, { backgroundColor: puzzle_Data[17].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[17].input_Value} ref={ref17} maxlength={1} onChangeText={(char) => validate(17, char, ref17, ref20)} />
+                        </Pressable>
+
+                        {/* Five  row*/}
+
+                        <Pressable key={41} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={42} style={[styles.input_cell, { backgroundColor: puzzle_Data[18].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[18].input_Value} maxlength={1} ref={ref18} onChangeText={(char) => validate(18, char, ref18, ref21)} />
+                        </Pressable>
+
+                        <Pressable key={43} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={44} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={45} style={[styles.input_cell, { backgroundColor: puzzle_Data[19].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[19].input_Value} maxlength={1} ref={ref19} onChangeText={(char) => validate(19, char, ref19, ref22)} />
+                        </Pressable>
+                        <Pressable key={46} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={47} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={48} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={49} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={50} style={[styles.input_cell, { backgroundColor: puzzle_Data[20].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[20].input_Value} maxlength={1} ref={ref20} onChangeText={(char) => validate(20, char, ref20, ref23)} />
+                        </Pressable>
+
+                        {/* Six  row*/}
+                        <Pressable key={51} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={52} style={[styles.input_cell, { backgroundColor: puzzle_Data[21].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[21].input_Value} maxlength={1} ref={ref21} onChangeText={(char) => validate(21, char, ref21, ref24)} />
+                        </Pressable>
+
+                        <Pressable key={53} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={54} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={55} style={[styles.input_cell, { backgroundColor: puzzle_Data[22].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[22].input_Value} maxlength={1} ref={ref22} onChangeText={(char) => validate(22, char, ref22, ref25)} />
+                        </Pressable>
+                        <Pressable key={56} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={57} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={58} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={59} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={60} style={[styles.input_cell, { backgroundColor: puzzle_Data[23].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[23].input_Value} maxlength={1} ref={ref23} onChangeText={(char) => validate(23, char, ref23, ref26)} />
+                        </Pressable>
+
+                        {/* Seven  row*/}
+
+                        <Pressable key={61} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={62} style={[styles.input_cell, { backgroundColor: puzzle_Data[24].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[24].input_Value} maxlength={1} ref={ref24} onChangeText={(char) => validate(24, char, ref24, ref27)} />
+                        </Pressable>
+
+                        <Pressable key={63} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={64} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={65} style={[styles.input_cell, { backgroundColor: puzzle_Data[25].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[25].input_Value} maxlength={1} ref={ref25} onChangeText={(char) => validate(25, char, ref25, ref29)} />
+                        </Pressable>
+                        <Pressable key={66} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={67} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={68} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={69} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={70} style={[styles.input_cell, { backgroundColor: puzzle_Data[26].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[26].input_Value} maxlength={1} ref={ref26} onChangeText={(char) => validate(26, char, ref26, ref34)} />
+                        </Pressable>
+
+                        {/* Eight  row*/}
+
+                        <Pressable key={71} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={72} style={[styles.input_cell, { backgroundColor: puzzle_Data[27].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[27].input_Value} maxlength={1} ref={ref27} onChangeText={(char) => validate(27, char, ref27, ref35)} />
+                        </Pressable>
+
+                        <Pressable key={73} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+
+                        <Pressable key={74} style={[styles.input_cell, { backgroundColor: puzzle_Data[28].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput placeholder="6" ref={ref28} value={puzzle_Data[28].input_Value} onFocus={() => setHint('Hint: A place where you keep food frozen.')} maxlength={1} onChangeText={(char) => validate(28, char, ref28, ref30)} />
+                        </Pressable>
+                        <Pressable key={75} style={[styles.input_cell, { backgroundColor: puzzle_Data[29].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput ref={ref29} value={puzzle_Data[29].input_Value} maxlength={1} onChangeText={(char) => validate(29, char, ref29, ref36)} />
+                        </Pressable>
+                        <Pressable key={76} style={[styles.input_cell, { backgroundColor: puzzle_Data[30].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[30].input_Value} ref={ref30} maxlength={1} onChangeText={(char) => validate(30, char, ref30, ref31)} />
+                        </Pressable>
+                        <Pressable key={77} style={[styles.input_cell, { backgroundColor: puzzle_Data[31].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[31].input_Value} ref={ref31} maxlength={1} onChangeText={(char) => validate(31, char, ref31, ref32)} />
+                        </Pressable>
+                        <Pressable key={78} style={[styles.input_cell, { backgroundColor: puzzle_Data[32].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[32].input_Value} ref={ref32} maxlength={1} onChangeText={(char) => validate(32, char, ref32, ref33)} />
+                        </Pressable>
+
+                        <Pressable key={79} style={[styles.input_cell, { backgroundColor: puzzle_Data[33].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[33].input_Value} ref={ref33} maxlength={1} onChangeText={(char) => validate(33, char, ref33, ref44)} />
+                        </Pressable>
+
+                        <Pressable key={80} style={[styles.input_cell, { backgroundColor: puzzle_Data[34].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[34].input_Value} ref={ref34} maxlength={1} onChangeText={(char) => validate(34, char, ref34, ref37)} />
+                        </Pressable>
+
+                        {/* Nine  row*/}
+
+                        <Pressable key={81} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={82} style={[styles.input_cell, { backgroundColor: puzzle_Data[35].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[35].input_Value} ref={ref35} maxlength={1} onChangeText={(char) => validate(35, char, ref35, ref38)} />
+                        </Pressable>
+
+                        <Pressable key={83} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={84} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={85} style={[styles.input_cell, { backgroundColor: puzzle_Data[36].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[36].input_Value} ref={ref36} maxlength={1} onChangeText={(char) => validate(36, char, ref36, ref39)} />
+                        </Pressable>
+                        <Pressable key={86} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={87} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={88} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={89} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={90} style={[styles.input_cell, { backgroundColor: puzzle_Data[37].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[37].input_Value} ref={ref37} maxlength={1} onChangeText={(char) => validate(37, char, ref37, ref40)} />
+                        </Pressable>
+
+                        {/* 10  row*/}
+
+                        <Pressable key={91} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={92} style={[styles.input_cell, { backgroundColor: puzzle_Data[38].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[38].input_Value} ref={ref38} maxlength={1} onChangeText={(char) => validate(38, char, ref38, ref7)} />
+                        </Pressable>
+
+                        <Pressable key={93} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={94} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={95} style={[styles.input_cell, { backgroundColor: puzzle_Data[39].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[39].input_Value} ref={ref39} maxlength={1} onChangeText={(char) => validate(39, char, ref39, ref41)} />
+                        </Pressable>
+                        <Pressable key={96} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={97} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={98} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={99} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={100} style={[styles.input_cell, { backgroundColor: puzzle_Data[40].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[40].input_Value} ref={ref40} maxlength={1} onChangeText={(char) => validate(40, char, ref40, ref42)} />
+                        </Pressable>
+
+                        {/* Eleven  row*/}
+
+                        <Pressable key={101} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={102} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={103} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={104} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={105} style={[styles.input_cell, { backgroundColor: puzzle_Data[41].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[41].input_Value} ref={ref41} maxlength={1} onChangeText={(char) => validate(41, char, ref41, ref43)} />
+                        </Pressable>
+                        <Pressable key={106} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={107} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={108} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={109} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={110} style={[styles.input_cell, { backgroundColor: puzzle_Data[42].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[42].input_Value} ref={ref42} maxlength={1} onChangeText={(char) => validate(42, char, ref42, ref47)} />
+                        </Pressable>
+
+                        {/* Thirteen  row*/}
+
+                        <Pressable key={111} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={112} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={113} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={114} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={115} style={[styles.input_cell, { backgroundColor: puzzle_Data[43].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[43].input_Value} ref={ref43} maxlength={1} onChangeText={(char) => validate(43, char, ref43, ref5)} />
+                        </Pressable>
+                        <Pressable key={116} style={styles.blank_cell}>
+                            <Text></Text>
+
+                        </Pressable>
+                        <Pressable key={117} style={[styles.input_cell, { backgroundColor: puzzle_Data[44].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput placeholder="7" value={puzzle_Data[44].input_Value} ref={ref44} onFocus={() => setHint('Hint: When you use the oldest food first.')} maxlength={1} onChangeText={(char) => validate(44, char, ref44, ref45)} />
+                        </Pressable>
+                        <Pressable key={118} style={[styles.input_cell, { backgroundColor: puzzle_Data[45].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[45].input_Value} maxlength={1} ref={ref45} onChangeText={(char) => validate(45, char, ref45, ref46)} />
+                        </Pressable>
+
+                        <Pressable key={119} style={[styles.input_cell, { backgroundColor: puzzle_Data[46].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[46].input_Value} maxlength={1} ref={ref46} onChangeText={(char) => validate(46, char, ref46, ref7)} />
+                        </Pressable>
+
+                        <Pressable key={120} style={[styles.input_cell, { backgroundColor: puzzle_Data[47].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[47].input_Value} maxlength={1} ref={ref47} onChangeText={(char) => validate(47, char, ref47, ref48)} />
+                        </Pressable>
+
+                        {/* Eleven  row*/}
+
+                        <Pressable key={121} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={122} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={123} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={124} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={125} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={126} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={127} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+                        <Pressable key={128} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={129} style={styles.blank_cell}>
+                            <Text></Text>
+                        </Pressable>
+
+                        <Pressable key={130} style={[styles.input_cell, { backgroundColor: puzzle_Data[48].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
+                            <TextInput value={puzzle_Data[48].input_Value} maxlength={1} ref={ref48} onChangeText={(char) => validate(48, char, ref48, ref28)} />
+                        </Pressable>
+                    </View>
+                    <View>
+                        <Text>{'\n'}</Text>
+
+                    </View>
+                    <View style={styles.Replay}>
+
+
+
+                        <Pressable style={styles.cancleBTN} onPress={() => Refresh()} >
+                            <Image source={require('../../assets/game2/replay.png')} style={styles.cancelIcon} />
+                        </Pressable>
+                    </View>
 
                 </View>
-
-                {/* <View style={styles.bar}>
-
-                    <Text style={styles.bar_status}>CROSS WORD</Text>
-                </View> */}
-
-                <View style={styles.hint}>
-
-                    <Text style={styles.hintTxt}>{hint}</Text>
-                </View>
-
-                <View style={styles.container}>
-
-
-                    {/* First row  */}
-
-                    <Pressable key={1} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={2} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={3} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={4} style={[styles.input_cell, { backgroundColor: puzzle_Data[0].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput placeholder="1" ref={ref0} value={puzzle_Data[0].input_Value} onFocus={() => setHint('Hint: Something that is not rotten.')} maxlength={1} onChangeText={(char) => validate(0, char, ref0, ref1)} />
-                    </Pressable>
-
-                    <Pressable key={5} style={[styles.input_cell, { backgroundColor: puzzle_Data[1].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput placeholder="2" ref={ref1} value={puzzle_Data[1].input_Value} onFocus={() => setHint('Hint: A place where you keep food cold ')} maxlength={1} onChangeText={(char) => validate(1, char, ref1, ref2)} />
-                    </Pressable>
-
-                    <Pressable key={6} style={[styles.input_cell, { backgroundColor: puzzle_Data[2].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[2].input_Value} ref={ref2} maxlength={1} onChangeText={(char) => validate(2, char, ref2, ref3)} />
-                    </Pressable>
-
-                    <Pressable key={7} style={[styles.input_cell, { backgroundColor: puzzle_Data[3].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[3].input_Value} ref={ref3} maxlength={1} onChangeText={(char) => validate(3, char, ref3, ref4)} />
-                    </Pressable>
-                    <Pressable key={8} style={[styles.input_cell, { backgroundColor: puzzle_Data[4].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[4].input_Value} ref={ref4} maxlength={1} onChangeText={(char) => validate(4, char, ref5, ref6)} />
-                    </Pressable>
-
-                    <Pressable key={9} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={10} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    {/* second  row*/}
-
-                    <Pressable key={11} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={12} style={[styles.input_cell, { backgroundColor: puzzle_Data[5].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput placeholder="3" value={puzzle_Data[5].input_Value} ref={ref5} onFocus={() => setHint('Hint: Material used to protect and wrap things.')} maxlength={1} onChangeText={(char) => validate(5, char, ref5, ref8)} />
-                    </Pressable>
-
-                    <Pressable key={13} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={14} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={15} style={[styles.input_cell, { backgroundColor: puzzle_Data[6].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[6].input_Value} ref={ref6} maxlength={1} onChangeText={(char) => validate(6, char, ref6, ref10)} />
-                    </Pressable>
-                    <Pressable key={16} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={17} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={18} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={19} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={20} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    {/* third  row*/}
-
-
-                    <Pressable key={21} style={[styles.input_cell, { backgroundColor: puzzle_Data[7].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput placeholder="4" value={puzzle_Data[7].input_Value} ref={ref7} onFocus={() => setHint('Hint: A big dump where waste is thrown .')} maxlength={1} onChangeText={(char) => validate(7, char, ref7, ref58)} />
-                    </Pressable>
-
-                    <Pressable key={22} style={[styles.input_cell, { backgroundColor: puzzle_Data[8].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[8].input_Value} maxlength={1} ref={ref8} onChangeText={(char) => validate(8, char, ref8, ref15)} />
-                    </Pressable>
-
-                    <Pressable key={23} style={[styles.input_cell, { backgroundColor: puzzle_Data[58].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[58].input_Value} maxlength={1} ref={ref58} onChangeText={(char) => validate(58, char, ref58, ref9)} />
-                    </Pressable>
-
-                    <Pressable key={24} style={[styles.input_cell, { backgroundColor: puzzle_Data[9].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[9].input_Value} maxlength={1} ref={ref9} onChangeText={(char) => validate(9, char, ref9, ref11)} />
-                    </Pressable>
-                    <Pressable key={25} style={[styles.input_cell, { backgroundColor: puzzle_Data[10].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[10].input_Value} maxlength={1} ref={ref10} onChangeText={(char) => validate(10, char, ref10, ref16)} />
-                    </Pressable>
-                    <Pressable key={26} style={[styles.input_cell, { backgroundColor: puzzle_Data[11].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[11].input_Value} maxlength={1} ref={ref11} onChangeText={(char) => validate(11, char, ref11, ref12)} />
-                    </Pressable>
-                    <Pressable key={27} style={[styles.input_cell, { backgroundColor: puzzle_Data[12].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[12].input_Value} maxlength={1} ref={ref12} onChangeText={(char) => validate(12, char, ref12, ref13)} />
-                    </Pressable>
-                    <Pressable key={28} style={[styles.input_cell, { backgroundColor: puzzle_Data[13].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[13].input_Value} maxlength={1} ref={ref13} onChangeText={(char) => validate(13, char, ref13, ref14)} />
-                    </Pressable>
-
-                    <Pressable key={29} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={30} style={[styles.input_cell, { backgroundColor: puzzle_Data[14].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput placeholder="5" ref={ref14} value={puzzle_Data[14].input_Value} onFocus={() => setHint('Hint: How to make food?')} maxlength={1} onChangeText={(char) => validate(14, char, ref14, ref17)} />
-                    </Pressable>
-
-                    {/* Fouth  row*/}
-
-                    <Pressable key={31} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={32} style={[styles.input_cell, { backgroundColor: puzzle_Data[15].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[15].input_Value} ref={ref15} maxlength={1} onChangeText={(char) => validate(15, char, ref15, ref18)} />
-                    </Pressable>
-
-                    <Pressable key={33} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={34} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={35} style={[styles.input_cell, { backgroundColor: puzzle_Data[16].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[16].input_Value} maxlength={1} ref={ref16} onChangeText={(char) => validate(16, char, ref16, ref19)} />
-                    </Pressable>
-                    <Pressable key={36} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={37} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={38} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={39} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={40} style={[styles.input_cell, { backgroundColor: puzzle_Data[17].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[17].input_Value} ref={ref17} maxlength={1} onChangeText={(char) => validate(17, char, ref17, ref20)} />
-                    </Pressable>
-
-                    {/* Five  row*/}
-
-                    <Pressable key={41} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={42} style={[styles.input_cell, { backgroundColor: puzzle_Data[18].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[18].input_Value} maxlength={1} ref={ref18} onChangeText={(char) => validate(18, char, ref18, ref21)} />
-                    </Pressable>
-
-                    <Pressable key={43} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={44} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={45} style={[styles.input_cell, { backgroundColor: puzzle_Data[19].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[19].input_Value} maxlength={1} ref={ref19} onChangeText={(char) => validate(19, char, ref19, ref22)} />
-                    </Pressable>
-                    <Pressable key={46} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={47} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={48} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={49} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={50} style={[styles.input_cell, { backgroundColor: puzzle_Data[20].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[20].input_Value} maxlength={1} ref={ref20} onChangeText={(char) => validate(20, char, ref20, ref23)} />
-                    </Pressable>
-
-                    {/* Six  row*/}
-                    <Pressable key={51} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={52} style={[styles.input_cell, { backgroundColor: puzzle_Data[21].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[21].input_Value} maxlength={1} ref={ref21} onChangeText={(char) => validate(21, char, ref21, ref24)} />
-                    </Pressable>
-
-                    <Pressable key={53} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={54} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={55} style={[styles.input_cell, { backgroundColor: puzzle_Data[22].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[22].input_Value} maxlength={1} ref={ref22} onChangeText={(char) => validate(22, char, ref22, ref25)} />
-                    </Pressable>
-                    <Pressable key={56} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={57} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={58} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={59} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={60} style={[styles.input_cell, { backgroundColor: puzzle_Data[23].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[23].input_Value} maxlength={1} ref={ref23} onChangeText={(char) => validate(23, char, ref23, ref26)} />
-                    </Pressable>
-
-                    {/* Seven  row*/}
-
-                    <Pressable key={61} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={62} style={[styles.input_cell, { backgroundColor: puzzle_Data[24].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[24].input_Value} maxlength={1} ref={ref24} onChangeText={(char) => validate(24, char, ref24, ref27)} />
-                    </Pressable>
-
-                    <Pressable key={63} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={64} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={65} style={[styles.input_cell, { backgroundColor: puzzle_Data[25].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[25].input_Value} maxlength={1} ref={ref25} onChangeText={(char) => validate(25, char, ref25, ref29)} />
-                    </Pressable>
-                    <Pressable key={66} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={67} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={68} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={69} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={70} style={[styles.input_cell, { backgroundColor: puzzle_Data[26].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[26].input_Value} maxlength={1} ref={ref26} onChangeText={(char) => validate(26, char, ref26, ref34)} />
-                    </Pressable>
-
-                    {/* Eight  row*/}
-
-                    <Pressable key={71} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={72} style={[styles.input_cell, { backgroundColor: puzzle_Data[27].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[27].input_Value} maxlength={1} ref={ref27} onChangeText={(char) => validate(27, char, ref27, ref35)} />
-                    </Pressable>
-
-                    <Pressable key={73} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-
-                    <Pressable key={74} style={[styles.input_cell, { backgroundColor: puzzle_Data[28].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput placeholder="6" ref={ref28} value={puzzle_Data[28].input_Value} onFocus={() => setHint('Hint: A place where you keep food frozen.')} maxlength={1} onChangeText={(char) => validate(28, char, ref28, ref30)} />
-                    </Pressable>
-                    <Pressable key={75} style={[styles.input_cell, { backgroundColor: puzzle_Data[29].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput ref={ref29} value={puzzle_Data[29].input_Value} maxlength={1} onChangeText={(char) => validate(29, char, ref29, ref36)} />
-                    </Pressable>
-                    <Pressable key={76} style={[styles.input_cell, { backgroundColor: puzzle_Data[30].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[30].input_Value} ref={ref30} maxlength={1} onChangeText={(char) => validate(30, char, ref30, ref31)} />
-                    </Pressable>
-                    <Pressable key={77} style={[styles.input_cell, { backgroundColor: puzzle_Data[31].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[31].input_Value} ref={ref31} maxlength={1} onChangeText={(char) => validate(31, char, ref31, ref32)} />
-                    </Pressable>
-                    <Pressable key={78} style={[styles.input_cell, { backgroundColor: puzzle_Data[32].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[32].input_Value} ref={ref32} maxlength={1} onChangeText={(char) => validate(32, char, ref32, ref33)} />
-                    </Pressable>
-
-                    <Pressable key={79} style={[styles.input_cell, { backgroundColor: puzzle_Data[33].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[33].input_Value} ref={ref33} maxlength={1} onChangeText={(char) => validate(33, char, ref33, ref44)} />
-                    </Pressable>
-
-                    <Pressable key={80} style={[styles.input_cell, { backgroundColor: puzzle_Data[34].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[34].input_Value} ref={ref34} maxlength={1} onChangeText={(char) => validate(34, char, ref34, ref37)} />
-                    </Pressable>
-
-                    {/* Nine  row*/}
-
-                    <Pressable key={81} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={82} style={[styles.input_cell, { backgroundColor: puzzle_Data[35].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[35].input_Value} ref={ref35} maxlength={1} onChangeText={(char) => validate(35, char, ref35, ref38)} />
-                    </Pressable>
-
-                    <Pressable key={83} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={84} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={85} style={[styles.input_cell, { backgroundColor: puzzle_Data[36].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[36].input_Value} ref={ref36} maxlength={1} onChangeText={(char) => validate(36, char, ref36, ref39)} />
-                    </Pressable>
-                    <Pressable key={86} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={87} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={88} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={89} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={90} style={[styles.input_cell, { backgroundColor: puzzle_Data[37].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[37].input_Value} ref={ref37} maxlength={1} onChangeText={(char) => validate(37, char, ref37, ref40)} />
-                    </Pressable>
-
-                    {/* 10  row*/}
-
-                    <Pressable key={91} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={92} style={[styles.input_cell, { backgroundColor: puzzle_Data[38].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[38].input_Value} ref={ref38} maxlength={1} onChangeText={(char) => validate(38, char, ref38, ref7)} />
-                    </Pressable>
-
-                    <Pressable key={93} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={94} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={95} style={[styles.input_cell, { backgroundColor: puzzle_Data[39].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[39].input_Value} ref={ref39} maxlength={1} onChangeText={(char) => validate(39, char, ref39, ref41)} />
-                    </Pressable>
-                    <Pressable key={96} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={97} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={98} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={99} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={100} style={[styles.input_cell, { backgroundColor: puzzle_Data[40].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[40].input_Value} ref={ref40} maxlength={1} onChangeText={(char) => validate(40, char, ref40, ref42)} />
-                    </Pressable>
-
-                    {/* Eleven  row*/}
-
-                    <Pressable key={101} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={102} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={103} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={104} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={105} style={[styles.input_cell, { backgroundColor: puzzle_Data[41].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[41].input_Value} ref={ref41} maxlength={1} onChangeText={(char) => validate(41, char, ref41, ref43)} />
-                    </Pressable>
-                    <Pressable key={106} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={107} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={108} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={109} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={110} style={[styles.input_cell, { backgroundColor: puzzle_Data[42].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[42].input_Value} ref={ref42} maxlength={1} onChangeText={(char) => validate(42, char, ref42, ref47)} />
-                    </Pressable>
-
-                    {/* Thirteen  row*/}
-
-                    <Pressable key={111} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={112} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={113} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={114} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={115} style={[styles.input_cell, { backgroundColor: puzzle_Data[43].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[43].input_Value} ref={ref43} maxlength={1} onChangeText={(char) => validate(43, char, ref43, ref7)} />
-                    </Pressable>
-                    <Pressable key={116} style={styles.blank_cell}>
-                        <Text></Text>
-
-                    </Pressable>
-                    <Pressable key={117} style={[styles.input_cell, { backgroundColor: puzzle_Data[44].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput placeholder="7" value={puzzle_Data[44].input_Value} ref={ref44} onFocus={() => setHint('Hint: When you use the oldest food first.')} maxlength={1} onChangeText={(char) => validate(44, char, ref44, ref45)} />
-                    </Pressable>
-                    <Pressable key={118} style={[styles.input_cell, { backgroundColor: puzzle_Data[45].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[45].input_Value} maxlength={1} ref={ref45} onChangeText={(char) => validate(45, char, ref45, ref46)} />
-                    </Pressable>
-
-                    <Pressable key={119} style={[styles.input_cell, { backgroundColor: puzzle_Data[46].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[46].input_Value} maxlength={1} ref={ref46} onChangeText={(char) => validate(46, char, ref46, ref7)} />
-                    </Pressable>
-
-                    <Pressable key={120} style={[styles.input_cell, { backgroundColor: puzzle_Data[47].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[47].input_Value} maxlength={1} ref={ref47} onChangeText={(char) => validate(47, char, ref47, ref48)} />
-                    </Pressable>
-
-                    {/* Eleven  row*/}
-
-                    <Pressable key={121} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={122} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={123} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={124} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={125} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={126} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={127} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-                    <Pressable key={128} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={129} style={styles.blank_cell}>
-                        <Text></Text>
-                    </Pressable>
-
-                    <Pressable key={130} style={[styles.input_cell, { backgroundColor: puzzle_Data[48].status === 'correct' ? '#F6BB42' : '#f4f3ee' }]}>
-                        <TextInput value={puzzle_Data[48].input_Value} maxlength={1} ref={ref48} onChangeText={(char) => validate(48, char, ref48, ref28)} />
-                    </Pressable>
-                </View>
-            </View>
-        </ScrollView>
-    </SafeAreaView>
+            </ScrollView>
+        </SafeAreaView>
+    }
 
 };
 export default Game;
@@ -1077,13 +1223,38 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
     },
     GameTxt: {
-        fontSize: 20,
+        fontSize: 15,
 
+    },
+    points: {
+        fontSize: 45,
+
+    },
+    GameWon: {
+        width: windowWidth,
+        height: windowHeight,
+        backgroundColor: '#8CC152',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlignVertical: 'center',
+    },
+    SorryMsg: {
+
+        fontSize: 30,
+    },
+    GameLost: {
+
+        fontSize: 20,
     },
 
     hintTxt: {
         fontSize: 15,
 
+    },
+    hr: {
+        borderBottomColor: '#fff', // Change the color as needed
+        borderBottomWidth: 1,       // Change the thickness as needed
+        marginVertical: 10,        // Adjust the margin as needed
     },
 
     input_cell: {
@@ -1119,9 +1290,9 @@ const styles = StyleSheet.create({
         marginHorizontal: 1,
         paddingVertical: 10,
         marginTop: 5,
-        marginBottom:10,
+        marginBottom: 10,
         justifyContent: 'center',
-        borderRadius:25,
+        borderRadius: 25,
         alignItems: 'center',
         shadowOffset: { width: 30, height: 30 },
         shadowColor: '#fff',
@@ -1146,15 +1317,20 @@ const styles = StyleSheet.create({
         alignItems: 'baseline',
     },
 
+    Replay: {
+
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 
     cancleBTN: {
-        position: 'absolute',
         bottom: 20,
         right: 20
     },
     cancelIcon: {
-        height: 80,
-        width: 80
+        height: 40,
+        width: 40
     },
     icon: {
         height: windowWidth / 8.4,
