@@ -1,16 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Dimensions, SafeAreaView, ScrollView } from 'react-native';
 
-const WordSearch = () => {
 
+
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
+const WordSearch = ({ navigation }) => {
+  const [score, setScore] = useState(0);
   const gridSize = 9;
   const [grid, setGrid] = useState([]);
   const [foundWords, setFoundWords] = useState([]);
   const [selectedCells, setSelectedCells] = useState([]);
   const [permCells, setPermCells] = useState([]);
   const [formed_Word, setFormed_word] = useState([]);
-  const wordsToInsert = ["STORAGE", "RICH", "EXPENSIVE", "SURPLUS", "PROTEIN", "EXCESS"];
+  const wordsToInsert = ["RECYCLE", "REDUCE", "REUSE", "OFFCUTS", "DONATE", "COMPOST"];
+  const ref1 = useRef();
 
+
+  const shouldApplyStyles = (wordToCheck) => {
+    console.log('Function called with word :', wordToCheck);
+    return foundWords.includes(wordToCheck);
+
+  };
 
   useEffect(() => {
 
@@ -20,14 +31,6 @@ const WordSearch = () => {
       return word.split('');
     };
 
-
-    // write storage
-    // write RICH
-    // write Expensive
-    // write SURPLUS
-    // write Protein
-    // write Excess	
-
     const newGrid = [];
     for (let i = 0; i < gridSize; i++) {
       const row = [];
@@ -36,57 +39,59 @@ const WordSearch = () => {
       }
       newGrid.push(row);
     };
-    // write storage
-    newGrid[0][0] = 'S';
-    newGrid[0][1] = 'T';
-    newGrid[0][2] = 'O';
-    newGrid[0][3] = 'R';
-    newGrid[0][4] = 'A';
-    newGrid[0][5] = 'G';
+    // write RECYCLE
+    newGrid[0][0] = 'R';
+    newGrid[0][1] = 'E';
+    newGrid[0][2] = 'C';
+    newGrid[0][3] = 'Y';
+    newGrid[0][4] = 'C';
+    newGrid[0][5] = 'L';
     newGrid[0][6] = 'E';
 
-    // write RICH
-    newGrid[0][3] = 'R';
-    newGrid[1][3] = 'I';
-    newGrid[2][3] = 'C';
-    newGrid[3][3] = 'H';
+    // write REUSE
+    newGrid[0][0] = 'R';
+    newGrid[1][0] = 'E';
+    newGrid[2][0] = 'U';
+    newGrid[3][0] = 'S';
+    newGrid[4][0] = 'E';
 
-    // write Expensive
-    newGrid[8][0] = 'E';
-    newGrid[7][1] = 'X';
-    newGrid[6][2] = 'P';
-    newGrid[5][3] = 'E';
-    newGrid[4][4] = 'N';
-    newGrid[3][5] = 'S';
-    newGrid[2][6] = 'I';
-    newGrid[1][7] = 'V';
-    newGrid[0][8] = 'E';
+    // write DONATE
+    newGrid[8][0] = 'D';
+    newGrid[7][1] = 'O';
+    newGrid[6][2] = 'N';
+    newGrid[5][3] = 'A';
+    newGrid[4][4] = 'T';
+    newGrid[3][5] = 'E';
 
-    // write SURPLUS
-    newGrid[8][1] = 'S';
-    newGrid[8][2] = 'U';
-    newGrid[8][3] = 'R';
+
+    // write COMPOST
+    newGrid[8][1] = 'C';
+    newGrid[8][2] = 'O';
+    newGrid[8][3] = 'M';
     newGrid[8][4] = 'P';
-    newGrid[8][5] = 'L';
-    newGrid[8][6] = 'U';
-    newGrid[8][7] = 'S';
+    newGrid[8][5] = 'O';
+    newGrid[8][6] = 'S';
+    newGrid[8][7] = 'T';
 
-    // write Protein
-    newGrid[8][8] = 'P';
-    newGrid[7][8] = 'R';
-    newGrid[6][8] = 'O';
-    newGrid[5][8] = 'T';
-    newGrid[4][8] = 'E';
-    newGrid[3][8] = 'I';
-    newGrid[2][8] = 'N';
+    // write OFFCUTS
+    newGrid[8][8] = 'O';
+    newGrid[7][8] = 'F';
+    newGrid[6][8] = 'F';
+    newGrid[5][8] = 'C';
+    newGrid[4][8] = 'U';
+    newGrid[3][8] = 'T';
+    newGrid[2][8] = 'S';
 
-    // write Excess	
-    newGrid[2][0] = 'E';
-    newGrid[3][1] = 'X';
-    newGrid[4][2] = 'C';
-    newGrid[5][3] = 'E';
-    newGrid[6][4] = 'S';
-    newGrid[7][5] = 'S';
+
+    // write REDUCE
+
+    newGrid[7][2] = 'R';
+    newGrid[7][3] = 'E';
+    newGrid[7][4] = 'D';
+    newGrid[7][5] = 'U';
+    newGrid[7][6] = 'C';
+    newGrid[7][7] = 'E';
+
 
     setGrid(newGrid);
   }, []);
@@ -101,8 +106,50 @@ const WordSearch = () => {
     setFormed_word(new_formed_Word);
 
     const charString = new_formed_Word.join('');
-    console.log(charString);
+    console.log('Formed word:', charString);
 
+
+    if (wordsToInsert.includes(charString)) {
+
+      console.log(charString, ": is available on the list");
+      if (!foundWords.includes(charString)) {
+
+        var points = charString.length;
+        setScore(score + points);
+      
+        if (charString == 'RECYCLE') {
+
+         setPermCells([...permCells,[0, 0], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5],[0,6]]);
+        }
+        else if(charString == 'COMPOST'){
+          setPermCells([...permCells,[8, 1], [8, 2], [8, 3], [8, 4], [8, 5], [8, 6],[8,7]]);
+       
+        }
+        else if(charString == 'DONATE'){
+          setPermCells([...permCells,[8, 0], [7, 1], [6, 2], [5, 3], [4, 4],[3,5]]);
+       
+        }
+        else if(charString == 'REDUCE'){
+          setPermCells([...permCells,[7, 2], [7, 3], [7, 4], [7, 5], [7, 6],[7,7]]);
+       
+        }
+        else if(charString == 'REUSE'){
+          setPermCells([...permCells,[0, 0], [1, 0], [2, 0], [3, 0],[4,0]]);
+       
+        }else if(charString == 'OFFCUTS'){
+          setPermCells([...permCells,[8, 8], [7, 8], [6, 8], [5, 8], [4, 8], [3, 8],[2,8]]);
+       
+        }
+        else {
+          console.log('not there');
+       
+        }
+        setFoundWords([...foundWords, charString]);
+
+      }
+    }
+
+    console.log(foundWords);
 
     if (newSelectedCells.length > 1) {
 
@@ -167,85 +214,117 @@ const WordSearch = () => {
 
     };
 
+
+
   };
 
+  if (foundWords.length == 6) {
+    return <SafeAreaView>
 
+      <ScrollView showsVerticalScrollIndicator={false} >
 
+        <View onLayout={() => {
+          console.log('This has mounted')
+          setTimeout(() => {
+            navigation.navigate('Home'); // Replace 'NextScreen' with the name of the screen you want to navigate to.
+          }, 1000);
+        }
+        } style={styles.GameWon}>
 
-  return <SafeAreaView>
-    <ScrollView showsVerticalScrollIndicator={false} >
+          <Text style={styles.points}>{score}</Text>
 
-      <View style={styles.scoreBord}>
-
-        <View>
-
-          <Text>
-            SCORE:20 POINTS
-          </Text>
+          <Text style={styles.SorryMsg}>congratulations</Text>
+          <Text style={styles.GameLost}>You won</Text>
         </View>
 
-      </View>
+      </ScrollView>
 
-      <View style={styles.wordBord}>
+    </SafeAreaView>
 
-        <View style={styles.wordRow}>
+  }
 
-          <Text style={styles.word}>
-            STORAGE
-          </Text>
-          <Text style={styles.word2}>
-            SURPLUS
-          </Text>
-          <Text style={styles.word3}>
-            RICH
-          </Text>
-        </View>
-        <View style={styles.wordRow}>
+  else {
 
-          <Text style={styles.word4}>
-            EXCESS
-          </Text>
-          <Text style={styles.word5}>
-            EXPENSIVE
-          </Text>
-          <Text style={styles.word6}>
-            PROTEIN
-          </Text>
+    return <SafeAreaView>
+      <ScrollView showsVerticalScrollIndicator={false} >
+
+        <View style={styles.scoreBord}>
+
+          <View>
+
+            <Text>
+              SCORE:{score} POINTS
+            </Text>
+          </View>
 
         </View>
 
-      </View>
+        <View style={styles.wordBord}>
 
-      <View style={styles.container}>
-        <View style={styles.grid}>
-          {
-            grid.map((row, x) => (
+          <View style={styles.wordRow}>
 
-              <View key={x} style={styles.row}>
-                {row.map((cell, y) => (
-                  <TouchableOpacity
-                    key={y}
-                    style={[
-                      styles.cell,
-                      selectedCells.some(([i, j]) => i === x && j === y) && styles.selected,
-                    ]}
-                    onMoveShouldSetResponder={() => true}
-                    onPress={() => handleCellSelect(x, y, cell)}
-                  >
-                    <Text>{cell}</Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            ))
-          }
+            <Text ref={ref1} style={[styles.word, shouldApplyStyles('RECYCLE') ? styles.linethrough : styles.word]}>
+              RECYCLE
+            </Text>
+            <Text style={[styles.word2, shouldApplyStyles('REUSE') ? styles.linethrough : styles.word]}>
+              REUSE
+            </Text>
+            <Text style={[styles.word3, shouldApplyStyles('REDUCE') ? styles.linethrough : styles.word]}>
+              REDUCE
+            </Text>
+          </View>
+          <View style={styles.wordRow}>
+
+            <Text style={[styles.word4, shouldApplyStyles('DONATE') ? styles.linethrough : styles.word]}>
+              DONATE
+            </Text>
+            <Text style={[styles.word5, shouldApplyStyles('OFFCUTS') ? styles.linethrough : styles.word]}>
+              OFFCUTS
+            </Text>
+            <Text style={[styles.word6, shouldApplyStyles('COMPOST') ? styles.linethrough : styles.word]}>
+              COMPOST
+            </Text>
+
+          </View>
 
         </View>
 
+        <View style={styles.container}>
+          <View style={styles.grid}>
+            {
+              grid.map((row, x) => (
 
-        <Text style={styles.header}>{formed_Word.join('')}</Text>
-      </View>
-    </ScrollView>
-  </SafeAreaView>
+                <View key={x} style={styles.row}>
+                  {row.map((cell, y) => (
+                    <TouchableOpacity
+                      key={y}
+                      style={[
+                        styles.cell,
+                        selectedCells.some(([i, j]) => i === x && j === y) && styles.selected,
+                        permCells.some(([i, j]) => i === x && j === y) && styles.selected,
+                      ]}
+                      onMoveShouldSetResponder={() => true}
+                      onPress={() => handleCellSelect(x, y, cell)}
+                    >
+                      <Text>{cell}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              ))
+            }
+
+          </View>
+
+
+          <Text style={styles.header}>{formed_Word.join('')}</Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  }
+
+
+
+
 
 };
 
@@ -276,6 +355,14 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
 
   },
+  linethrough: {
+
+    textDecorationLine: 'line-through',
+    textDecorationStyle: 'solid',
+    backgroundColor: '#ffd60a',
+
+  }
+  ,
   scoreBord: {
 
 
@@ -363,6 +450,22 @@ const styles = StyleSheet.create({
   },
   grid: {
     flexDirection: 'column',
+  },
+  GameWon: {
+    width: windowWidth,
+    height: windowHeight,
+    backgroundColor: '#8CC152',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlignVertical: 'center',
+  },
+  SorryMsg: {
+
+    fontSize: 30,
+  },
+  GameLost: {
+
+    fontSize: 20,
   },
   row: {
     flexDirection: 'row',

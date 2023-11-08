@@ -32,6 +32,8 @@ import Game4 from '../games/game4';
 import Game5 from '../games/game5';
 import Game6 from '../games/game6'
 
+import About from '../main/About'
+
 
 const Stack = createStackNavigator(); 6
 export default function () {
@@ -43,6 +45,12 @@ export default function () {
             <Stack.Screen name='Game6'
                 component={Game6}
                 options={{ header: () => null }} />
+
+            <Stack.Screen name='About'
+                component={About}
+                options={{ header: () => null }} />
+
+
 
 
             <Stack.Screen name='Game5'
