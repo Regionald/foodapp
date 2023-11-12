@@ -62,26 +62,26 @@ export const AuthProvider = ({ children }) => {
         
 		
         // console.log(response.Timestamp.fromDate(new Date()));
-		console.log(response.user.uid);
+		console.log('School:',school);
 
 		db().ref(`/users/${response.user.uid}`).set({
 			Province: province,
-			Full_Name: full_name,
+			Job_title: full_name,
 			Email:Email,
-			Location:province,
-			School:school
+			School:school,
 		});
 	}
 
 	const register = async (Name, Email, Password, province,school) => {
 		// setLoading(true);
+		console.log(school," at the register function")
 		try {
 
 			const response = await auth().createUserWithEmailAndPassword(Email, Password);
 
 			if (response.user) {
 
-				await createProfile(response, Name, province,Email,school.text);
+				await createProfile(response, Name, province,Email,school);
 
 			};
 		} catch (e) {

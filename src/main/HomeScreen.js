@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
 		if (text !== undefined) {
 			try {
 
-				text = text.Full_Name;
+				text = text.Job_title;
 				text = text.trim();
 				let myString = text.split(' ');
 				let firstName = myString[0];
@@ -100,7 +100,7 @@ const HomeScreen = ({ navigation }) => {
 							onPress={() => navigation.navigate('Profile')}
 						>
 							<Text style={styles.initials}>
-								{onInitialMaker(userData?.Full_Name)}
+								{onInitialMaker(userData?.Job_title)}
 							</Text>
 						</TouchableOpacity>
 					</View>

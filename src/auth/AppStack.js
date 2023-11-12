@@ -30,16 +30,22 @@ import Game2 from '../games/game2';
 import Game3 from '../games/game3';
 import Game4 from '../games/game4';
 import Game5 from '../games/game5';
-import Game6 from '../games/game6'
+import Game6 from '../games/game6';
+import EditProfile from '../main/EditProfile';
+import About from '../main/About';
 
-import About from '../main/About'
 
-
-const Stack = createStackNavigator(); 6
+const Stack = createStackNavigator();
 export default function () {
     return (
-
         <Stack.Navigator>
+            <Stack.Screen name='Home'
+                component={HomeScreen}
+                options={{ header: () => null }} />
+
+            <Stack.Screen name='Edit Profile'
+                component={EditProfile}
+                options={{ header: () => null }} />
 
 
             <Stack.Screen name='Game6'
@@ -50,9 +56,6 @@ export default function () {
                 component={About}
                 options={{ header: () => null }} />
 
-
-
-
             <Stack.Screen name='Game5'
                 component={Game5}
                 options={{ header: () => null }} />
@@ -60,7 +63,6 @@ export default function () {
             <Stack.Screen name='Game3'
                 component={Game3}
                 options={{ header: () => null }} />
-
 
             <Stack.Screen name='Game4'
                 component={Game4}
@@ -70,16 +72,9 @@ export default function () {
                 component={Game1}
                 options={{ header: () => null }} />
 
-            <Stack.Screen name='Home'
-                component={HomeScreen}
-                options={{ header: () => null }} />
-
-
-
             <Stack.Screen name='Profile'
                 component={profile}
                 options={{ header: () => null }} />
-
 
             <Stack.Screen name='Game2'
                 component={Game2}
@@ -124,7 +119,6 @@ export default function () {
             <Stack.Screen name='Firthquiz'
                 component={Firthquiz}
                 options={{ header: () => null }} />
-
         </Stack.Navigator>)
 }
 

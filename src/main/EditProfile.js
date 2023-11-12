@@ -12,15 +12,14 @@ import {
 	StatusBar,
 	RefreshControl,
 } from 'react-native';
-import firebase from 'firebase';
-import { AuthContext } from '../../navigation/AuthProvider';
+import { AuthContext } from '../auth/AuthProvider';
 import { Colors, windowWidth } from '../../utils/util';
-import LabelInput from '../../components/LabelInput';
-import Loading from '../../components/Loading';
-import Initial from '../../components/Initial';
-import CustomAlert from '../../components/CustomAlert';
-import DropDown from '../../components/DropDown';
-import Button from '../../components/Button';
+import LabelInput from '../components/LabelInput';
+import Loading from '../components/loading';
+import Initial from '../components/Intial';
+// import CustomAlert from '../components/CustomAlert';
+import DropDown from '../components/DropDown';
+import Button from '../components/Button';
 
 const useMountedState = () => {
 	const mountedRef = useRef(false);
@@ -75,7 +74,7 @@ const EditProfile = ({ navigation }) => {
 								title: error.message,
 								visible: true,
 							});
-						});
+						}); 
 				}
 
 				saveInfo();
@@ -237,12 +236,12 @@ const EditProfile = ({ navigation }) => {
 
 				<Button title={'Update'} onPress={() => updateData()} />
 				<Loading loading={loading} />
-				<CustomAlert
+				{/* <CustomAlert
 					visible={alert.visible}
 					status={alert.status}
 					title={alert.title}
 					onClose={() => setAlert({ ...alert, visible: false })}
-				/>
+				/> */}
 			</ScrollView>
 		</SafeAreaView>
 	);

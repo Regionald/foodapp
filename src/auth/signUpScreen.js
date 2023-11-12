@@ -65,6 +65,7 @@ const SignUpScreen = ({ navigation }) => {
 
 	const onSignUp = () => {
 		const error = validateInput();
+		console.log(school," at the initial button")
 
 		if (Object.keys(error).length === 0) {
 			register(values.name, values.email, values.password, province,school);
@@ -80,7 +81,7 @@ const SignUpScreen = ({ navigation }) => {
 		var numbers = /[0-9]/g;
 
 		if (!values.name) {
-			errors.name = 'Name is required';
+			errors.name = 'Job title is required';
 		}
 
 		if (!values.email) {
@@ -138,14 +139,14 @@ const SignUpScreen = ({ navigation }) => {
 					<Text style={styles.subTitle}>Create an account</Text>
 
 					<View>
-						<Text style={styles.label}>Full Name</Text>
+						<Text style={styles.label}>Job Title</Text>
 						<View style={styles.inputContainer}>
 							<TextInput
 								style={styles.input}
 								onChangeText={(name) => setValues({ ...values, name })}
 								numberOfLines={1}
 								maxLength={30}
-								placeholder='Full Name'
+								placeholder='Job Title'
 								placeholderTextColor={Colors.gray}
 								autoCapitilize='words'
 								autoCorrect={false}
@@ -200,7 +201,7 @@ const SignUpScreen = ({ navigation }) => {
 								style={styles.input}
 								onChangeText={(text) => SetSchool(text)}
 								numberOfLines={1}
-								maxLength={30}
+								maxLength={120}
 								placeholder='Name of school'
 								placeholderTextColor={Colors.gray}
 								autoCapitilize='words'

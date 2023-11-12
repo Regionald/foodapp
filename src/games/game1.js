@@ -266,9 +266,10 @@ const Game = ({ navigation }) => {
         const updatepuzzle = [...puzzle_Data];
         updatepuzzle[index].input_Value = char[0];
         setPuzzleData(updatepuzzle);
+       
+        //if (inputRef && inputRef.current && updatepuzzle[index].input_Value != '') {
 
-
-        if (inputRef && inputRef.current && updatepuzzle[index].input_Value != '') {
+        if (inputRef && inputRef.current) {
 
             setTimeout(() => {
 
