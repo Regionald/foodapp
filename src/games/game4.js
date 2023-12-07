@@ -135,6 +135,8 @@ const Game = ({ navigation }) => {
                 }
             }, 500);
 
+            nextRef.current.focus(); 
+
         };
 
         Fresh(puzzle_Data[0].input_Value,
@@ -376,8 +378,6 @@ const Game = ({ navigation }) => {
                     }, 1000);
                 }
                 } style={styles.GameWon}>
-
-                    <Text style={styles.points}>{score}</Text>
 
                     <Text style={styles.SorryMsg}>congratulations</Text>
                     <Text style={styles.GameLost}>You won</Text>

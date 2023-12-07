@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { Colors, Fonts, windowWidth } from '../../utils/util';
 import Icons from '@expo/vector-icons/MaterialCommunityIcons';
 
@@ -63,6 +63,7 @@ const DropDown = ({ label, options, selected, value }) => {
 					</TouchableOpacity>
 					{options.map((option, index) => {
 						return (
+
 							<TouchableOpacity
 								style={styles.option}
 								onPress={() => select(option.title)}
@@ -72,6 +73,7 @@ const DropDown = ({ label, options, selected, value }) => {
 									{option.title}
 								</Text>
 							</TouchableOpacity>
+
 						);
 					})}
 				</View>

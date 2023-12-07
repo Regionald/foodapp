@@ -190,8 +190,6 @@ const Game = ({ navigation }) => {
                 }, 1000);
             }} style={styles.GameWon}>
 
-            <Text style={styles.SorryMsg}>5</Text>
-
                 <Text style={styles.SorryMsg}>congratulations</Text>
                 <Text style={styles.GameLost}>You won</Text>
             </View>

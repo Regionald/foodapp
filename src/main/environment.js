@@ -13,7 +13,7 @@ import {
 import { Colors, Fonts, windowWidth } from '../../utils/util';
 import Startquize from '../components/startquiz';
 import Feather from '@expo/vector-icons/Feather';
-// import * as Speech from 'expo-speech';
+import * as Speech from 'expo-speech';
 
 const useMountedState = () => {
 	const mountedRef = useRef(false);
@@ -38,55 +38,91 @@ const Nutrition = ({ navigation }) => {
 		rate: 0.75,
 	});
 
+	const whatToSay=`Food waste on the environment
+	•	When food is wasted it also affects the land, water, labour energy and other factors that were used in its production, processing, transporting, preparing, storing and disposal.
+	•	Food waste and food loss heightens the climate crisis with the production of greenhouse gases (GHG) 
+	o	Greenhouse gases are gases that sit in the Earth’s atmosphere and create a layer like a “blanket”.
+	o	These gases are needed to maintain the Earth’s temperature. 
+	o	But because of humans, this layer has gotten thicker which makes the Earth a lot warmer.
+	o	The more greenhouse gases the thicker the “blanket” gets, the thicker the blanket, the warmer the Earth becomes.
+	•	GHG’s are dangerous in large amounts because the thick blanket makes the Earth warmer and warmer which starts to change the natural weather patterns. 
+	•	This is known as global warming.
+	o	The increased rising of the Earth’s temperature.
+	•	The production, transportation and handling of food generates a large amount of Carbon dioxide (CO2) 
+	o	CO2 is a greenhouse gas produced by natural processes such as breathing of plants and animals.
+	o	Human activities like burning coal and cutting down large amounts of trees has increased the amount of CO2 the atmosphere can manage.
+	•	When thrown away food ends up in landfills it leads to methane gas being produced which is an even deadlier greenhouse gas which has terrible negative effects on global warming and environment
+	o	Methane gas is another greenhouse gas that occurs naturally when things rot
+	o	Human activities like cattle farming and landfills have increased the balance of methane in the atmosphere.
+	o	Methane gas is a lot heavier the CO2 so the “blanket” it makes in the atmosphere is a lot thicker
+	o	The effects of methane gas on the environment leads to global warming which cause drastic and rapid climate changes.
+	•	Landfills are breading sites for methane gas because all the food is piled on top of each other and doesn’t have oxygen to rot properly.
+	•	Landfills are huge rubbish sites where most of the worlds waste products end up.
+	•	In the case of food waste most of our wasted food ends up on landfills instead of being properly managed such as composted
+	•	When food is composted, it is done so with oxygen, so the food is allowed to rot more openly which is better for the environment.
+	•	There is a clear connection between food waste and climate change. 
+	o	The more we waste, the more natural resources are used up.
+	o	The more we waste the more food that ends up in landfills.
+	o	The more food in landfills, the more methane gas produced.
+	o	The more methane gas in the environment, the thicker the “blanket”.
+	o	The thicker the blanket the greater impact it has on the climate and global warming.
+	o	The more drastic the weather changes are, the more food is poorly harvested and more wasted.
+	o	Then the cycle repeats.
+	•	Wasted food uses up large amounts of freshwater with up to 25% in some cases and is a leading cause of water pollution.
+	•	If food waste were to be reduced about 6%-8% of all GHG caused by people would be reduced.
+	•	The more the worlds population grows, the more we need to think about how to waste less food.
+	•	As it stands there is enough food being produced to feed every person, so we need to look at how to better use the food already produced and reduce food insecurity.
+	`
 
-	// const speak = () => {
-	// 	const start = () => {
-	// 		setSpeech({ ...speech, inProgress: true });
-	// 	};
-	// 	const complete = () => {
-	// 		speech.inProgress &&
-	// 			setSpeech({ ...speech, inProgress: false, paused: false });
-	// 	};
 
-	// 	Speech.speak(whatToSay, {
-	// 		language: 'en',
-	// 		rate: speech.rate,
-	// 		onStart: start,
-	// 		onDone: complete,
-	// 		onStopped: complete,
-	// 		onError: complete,
-	// 	});
-	// };
+	const speak = () => {
+		const start = () => {
+			setSpeech({ ...speech, inProgress: true });
+		};
+		const complete = () => {
+			speech.inProgress &&
+				setSpeech({ ...speech, inProgress: false, paused: false });
+		};
 
-	// const stop = () => {
-	// 	Speech.stop();
-	// 	setSpeech({ ...speech, inProgress: false });
-	// };
+		Speech.speak(whatToSay, {
+			language: 'en',
+			rate: speech.rate,
+			onStart: start,
+			onDone: complete,
+			onStopped: complete,
+			onError: complete,
+		});
+	};
 
-	// const increaseRate = () => {
-	// 	setSpeech({
-	// 		...speech,
-	// 		rate: speech.rate + 0.1,
-	// 	});
-	// };
+	const stop = () => {
+		Speech.stop();
+		setSpeech({ ...speech, inProgress: false });
+	};
 
-	// const decreaseRate = () => {
-	// 	setSpeech({
-	// 		...speech,
-	// 		rate: speech.rate - 0.1,
-	// 	});
-	// };
+	const increaseRate = () => {
+		setSpeech({
+			...speech,
+			rate: speech.rate + 0.1,
+		});
+	};
 
-	// const onRefresh = () => {
-	// 	setRefreshing(true);
-	// 	setRefreshing(false);
-	// };
+	const decreaseRate = () => {
+		setSpeech({
+			...speech,
+			rate: speech.rate - 0.1,
+		});
+	};
 
-	// useEffect(() => {
-	// 	return () => {
-	// 		Speech.stop();
-	// 	};
-	// }, [isMounted]);
+	const onRefresh = () => {
+		setRefreshing(true);
+		setRefreshing(false);
+	};
+
+	useEffect(() => {
+		return () => {
+			Speech.stop();
+		};
+	}, [isMounted]);
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -116,7 +152,7 @@ const Nutrition = ({ navigation }) => {
 				<Text style={styles.bold}>Let's Get Started</Text>
 				<Text style={styles.heading}>Learn more about Food waste on the environment  </Text>
 
-				{/* <View style={styles.flexBtn}>
+				<View style={styles.flexBtn}>
 					<TouchableOpacity
 						style={styles.controllbtn}
 						onPress={() => decreaseRate()}
@@ -142,12 +178,10 @@ const Nutrition = ({ navigation }) => {
 					>
 						<Feather name='fast-forward' color={Colors.Primary} size={20} />
 					</TouchableOpacity>
-				</View> */}
+				</View>
 
 				<View style={styles.info}>
-					<Text>
-						{"\n"}
-					</Text>
+				
 					<Text style={styles.heading}>When food is wasted it also affects the land, water,
 						labour energy and other factors that were used in its production, processing, transporting,
 						preparing, storing and disposal.</Text>
@@ -192,7 +226,7 @@ const Nutrition = ({ navigation }) => {
 				<View style={styles.info}>
 					<View style={styles.imagecontainer}>
 						<Image
-							source={require('../../assets/FatsAndOil.jpg')}
+							source={require('../../assets/compost.jpg')}
 							style={styles.image}
 						/>
 					</View>
@@ -220,7 +254,7 @@ const Nutrition = ({ navigation }) => {
 				<View style={styles.info}>
 					<View style={styles.imagecontainer}>
 						<Image
-							source={require('../../assets/Proteins.jpg')}
+							source={require('../../assets/pexels.jpg')}
 							style={styles.image}
 						/>
 					</View>
@@ -235,7 +269,7 @@ const Nutrition = ({ navigation }) => {
 				<View style={styles.info}>
 					<View style={styles.imagecontainer}>
 						<Image
-							source={require('../../assets/VitaminsAndMinerals.jpg')}
+							source={require('../../assets/pexe.jpg')}
 							style={styles.image}
 						/>
 					</View>

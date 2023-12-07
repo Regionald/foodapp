@@ -19,7 +19,7 @@ import { AuthContext } from '../auth/AuthProvider';
 
 
 const Quiz = ({ navigation }) => {
-    const {update_quiz} = useContext(AuthContext);
+    const { update_quiz } = useContext(AuthContext);
 
     function Clean_responce(response) {
         response = response.split('.');
@@ -56,7 +56,7 @@ const Quiz = ({ navigation }) => {
 
         score = ((score / memo.length) * 100).toFixed(2);
 
-        update_quiz('Knowledge',memo,score);
+        update_quiz('Knowledge', memo, score);
 
         if (score < 80) {
 
@@ -137,7 +137,7 @@ const Quiz = ({ navigation }) => {
                             selected={(e) => setQuestion_3(e)}
                             value={question_3}
                         />
-                    
+
                     </View>
                     <View>
                         <DropDown
@@ -171,16 +171,16 @@ const Quiz = ({ navigation }) => {
                                     title: 'B. 3 million',
                                 },
                                 {
-                                    title: 'A. 100 million',
+                                    title: 'C. 100 million',
                                 },
                                 {
-                                    title: 'B. 2 Billion',
+                                    title: 'D. 2 Billion',
                                 },
                             ]}
                             selected={(e) => setQuestion_5(e)}
                             value={question_5}
                         />
-    
+
                     </View>
                     <View>
                         <DropDown
@@ -193,16 +193,18 @@ const Quiz = ({ navigation }) => {
                                     title: 'B. 10 million tonnes',
                                 },
                                 {
-                                    title: 'A. 10 tonnes',
+                                    title: 'C. 10 tonnes',
                                 },
                                 {
-                                    title: 'B. 20 million tonnes',
+                                    title: 'D. 20 million tonnes',
                                 },
+                    
                             ]}
                             selected={(e) => setQuestion_6(e)}
                             value={question_6}
                         />
                     </View>
+                    <View></View>
                     <Button title='Submit' onPress={Mark} />
 
                 </View>
@@ -220,7 +222,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         padding: 20,
-        height: windowHeight,
+        height: windowHeight+windowWidth,
     },
     subText: {
         fontSize: 30,

@@ -13,7 +13,7 @@ import {
 import { Colors, Fonts, windowWidth } from '../../utils/util';
 import Startquize from '../components/startquiz'
 import Feather from '@expo/vector-icons/Feather';
-// import * as Speech from 'expo-speech';
+import * as Speech from 'expo-speech';
 
 const useMountedState = () => {
 	const mountedRef = useRef(false);
@@ -38,55 +38,97 @@ const Nutrition = ({ navigation }) => {
 		rate: 0.75,
 	});
 
+	const whatToSay=`Food waste general knowledge and understanding 
 
-	// const speak = () => {
-	// 	const start = () => {
-	// 		setSpeech({ ...speech, inProgress: true });
-	// 	};
-	// 	const complete = () => {
-	// 		speech.inProgress &&
-	// 			setSpeech({ ...speech, inProgress: false, paused: false });
-	// 	};
+	•	Food waste is food that is left uneaten.
+	o	Food waste can be edible or inedible.
+	o	Edible means that it is still safe and able to be eaten, like if you dish up too much and leave food on your plate.
+	o	Inedible is either unsafe or cannot be eaten further. Things such as bones and certain vegetable peels.
+	•	It is said that almost 1/3rd or 30% of all the food produces to be eaten goes wasted.
+	o	This means that more than 2 billion people could be fed with the amount of food we waste.
+	o	This is over 1.3 billion tonnes of fruits, vegetables, dairy, seafood and grains.
+	•	If food waste were to reduced, this would improve society as levels of food insecurity and malnutrition would decrease.
+	•	This wasted food is caused throughout the food supply chain (FSC) for various reasons like:
+	o	On the farms due to poor harvesting
+	o	At manufacturers and distributors due to poor handling and transportation
+	o	 At retailers due to poor storage and supply/demand trends
+	o	Or at consumers due to overconsumptions and poor consumption behaviours
+	•	This wasted food could be enough to end world hunger and feed every starving person on the planet.
+	•	Globally food waste waste’s money.
+	o	Money spent on growing, processing, storing and disposing of the food w=that was never eaten.
+	•	In South Africa 10 million tonnes of food are wasted each year
+	o	Of this, 70% of the foods that are wasted are fruits, vegetables and cereals.
+	o	This is an annually loss of R61,5 billion rand according to the Council for Scientific and Industrial Research
+	•	The wasted food in South Africa leads to a wasted energy that was used to produce these foods.
+	o	It is said that this wasted energy could light up the City of Johannesburg for 16 weeks!
+	o	The wasted water could fill 600 000 Olympic sized swimming pools.
+	•	All this wasted food ends up in landfills whereas the food rot they produce greenhouse gases that affect the environment.
+	•	Food waste is the prominent items to end up in landfills which then get incinerated (burned).
+	•	Wasted food therefore poots a lot of strain on natural resources like water, land, labour and energy.
+	•	Consumers food waste patterns is at least 8 times more costly than those of farms.
+	•	Consumers do not necessarily see food waste as a problem for them to solve.
+	o	When eating out, you pay for the food, so you assume all other responsibilities are not your problem.
+	o	Younger generations are more concerned about food waste as they are generally more worried about the effects on the environment.
+	•	Money is a motivator.
+	o	People will think about preventing food waste only if its of benefit to them.
+	o	If there is a way that money will be saved, then food waste will try to be avoided.
+	•	Food waste is an economic issue. 
+	o	Money used to dispose of food waste comes directly for consumers through tax. 
+	o	The less food wasted; the less money is spent on trying to treat the waste.
+	•	Food waste is a social issue.
+	o	Billions go hungry each day without access to food.
+	o	There is enough food being produced, it is simply being improperly handled or carelessly wasted.
+	`
 
-	// 	Speech.speak(whatToSay, {
-	// 		language: 'en',
-	// 		rate: speech.rate,
-	// 		onStart: start,
-	// 		onDone: complete,
-	// 		onStopped: complete,
-	// 		onError: complete,
-	// 	});
-	// };
 
-	// const stop = () => {
-	// 	Speech.stop();
-	// 	setSpeech({ ...speech, inProgress: false });
-	// };
+	const speak = () => {
+		const start = () => {
+			setSpeech({ ...speech, inProgress: true });
+		};
+		const complete = () => {
+			speech.inProgress &&
+				setSpeech({ ...speech, inProgress: false, paused: false });
+		};
 
-	// const increaseRate = () => {
-	// 	setSpeech({
-	// 		...speech,
-	// 		rate: speech.rate + 0.1,
-	// 	});
-	// };
+		Speech.speak(whatToSay, {
+			language: 'en',
+			rate: speech.rate,
+			onStart: start,
+			onDone: complete,
+			onStopped: complete,
+			onError: complete,
+		});
+	};
 
-	// const decreaseRate = () => {
-	// 	setSpeech({
-	// 		...speech,
-	// 		rate: speech.rate - 0.1,
-	// 	});
-	// };
+	const stop = () => {
+		Speech.stop();
+		setSpeech({ ...speech, inProgress: false });
+	};
 
-	// const onRefresh = () => {
-	// 	setRefreshing(true);
-	// 	setRefreshing(false);
-	// };
+	const increaseRate = () => {
+		setSpeech({
+			...speech,
+			rate: speech.rate + 0.1,
+		});
+	};
 
-	// useEffect(() => {
-	// 	return () => {
-	// 		Speech.stop();
-	// 	};
-	// }, [isMounted]);
+	const decreaseRate = () => {
+		setSpeech({
+			...speech,
+			rate: speech.rate - 0.1,
+		});
+	};
+
+	const onRefresh = () => {
+		setRefreshing(true);
+		setRefreshing(false);
+	};
+
+	useEffect(() => {
+		return () => {
+			Speech.stop();
+		};
+	}, [isMounted]);
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -116,7 +158,7 @@ const Nutrition = ({ navigation }) => {
 				<Text style={styles.bold}>Let's Get Started</Text>
 				<Text style={styles.heading}>Learn more about Food waste general knowledge and understanding</Text>
 
-				{/* <View style={styles.flexBtn}>
+				<View style={styles.flexBtn}>
 					<TouchableOpacity
 						style={styles.controllbtn}
 						onPress={() => decreaseRate()}
@@ -131,7 +173,7 @@ const Nutrition = ({ navigation }) => {
 						<TouchableOpacity
 							style={styles.controllbtn}
 							onPress={() => speak()}
-						>
+						> 
 							<Feather name='play' color={Colors.Primary} size={20} />
 						</TouchableOpacity>
 					)}
@@ -142,16 +184,14 @@ const Nutrition = ({ navigation }) => {
 					>
 						<Feather name='fast-forward' color={Colors.Primary} size={20} />
 					</TouchableOpacity>
-				</View> */}
+				</View>
 
 				<View style={styles.info}>
-					<View><Text>
-						{"\n"}
-					</Text></View>
+				
 					<Text style={styles.heading}>Food waste is food that is left uneaten.</Text>
 					<View style={styles.imagecontainer}>
 						<Image
-							source={require('../../assets/Nutrients.jpg')}
+							source={require('../../assets/ell.jpg')}
 							style={styles.image}
 						/>
 					</View>
@@ -214,7 +254,7 @@ const Nutrition = ({ navigation }) => {
 
 					<View style={styles.imagecontainer}>
 						<Image
-							source={require('../../assets/Carbohydrates.jpg')}
+							source={require('../../assets/rachel.jpg')}
 							style={styles.image}
 						/>
 					</View>

@@ -13,7 +13,7 @@ import {
 import { Colors, Fonts, windowWidth } from '../../utils/util';
 import Feather from '@expo/vector-icons/Feather';
 import Startquize from '../components/startquiz';
-// import * as Speech from 'expo-speech';
+import * as Speech from 'expo-speech';
 
 const useMountedState = () => {
 	const mountedRef = useRef(false);
@@ -38,71 +38,121 @@ const logFun = () => {
 const Causes = ({ navigation }) => {
 	let isMounted = useMountedState();
 	const [refreshing, setRefreshing] = useState(false);
-	// const [speech, setSpeech] = useState({
-	// 	inProgress: false,
-	// 	paused: false,
-	// 	rate: 0.75,
-	// });
+	const [speech, setSpeech] = useState({
+		inProgress: false,
+		paused: false,
+		rate: 0.75,
+	});
 
 	const whatToSay = `	
-	Causes of food waste in schools:
-
-	1.	Poor service delivery standards.
-	2.	Poor quality of food leads the food to be discarded or returned.
-	3.	Lack of appropriate ordering system within the school.
-	4.	Learners have varying taste preferences.
-	5.	Learners not having enough time to finish their food during short break periods.
-	6.	Over-production of food by VFH.
+	Common causes and misconceptions of food waste
+•	Food waste and food loss occur through the food supply chain (FSC)
+•	The food supply chain broadly consists of
+o	Producers – grow or produce the foods.
+o	Manufacturers – process, package and store the foods.
+o	Distributors – Transport the bulk foods to different industries.
+o	Retailers – sell the foods to consumers (e.g., grocery store, restaurant)
+o	Consumers – final stage, receive the products and use it up.
+•	Food waste and loss can happen at any of these stages.
+•	Producers can experience food waste due to
+o	Poor weather conditions
+o	Increase/decrease in demand and supply
+o	Poor finances of the economy
+•	Manufacturers can experience food waste due to
+o	Poor handling of food items
+o	Incorrect storage methods and temperatures
+o	Unsanitary working environments
+•	Distributors can experience food waste due to
+o	Incorrect transportation methods
+o	Incorrect transportation temperatures
+o	Poor transportation facilities
+•	Retailers are a large sector and have a variety of reasons for food waste.
+o	Incorrect storage methods and temperatures
+o	Incorrect preparation methods
+o	Lack of accurate skills
+o	Overproduction of foods
+o	Underproduction of foods
+o	Incorrect forecasting of consumers
+•	At the consumer stage, which is the focus, there are multiple reasons as well for food wasted.
+o	Poor menu planning
+o	Poor preparation methods
+	Overcooking produce
+	Using the same preparation method on multiple ingredients
+o	Incorrect storage methods 
+	Food not being used in time before it goes bad
+	Food ‘hidden’ in the fridge
+o	Overpreparing
+	Cooking up or serving too much food
+	Forgetting or not wanting to eat leftover overprepared food and throwing it away.
+o	Poor portion control
+	Larger and larger portions are being served.
+	Restaurants are serving larger portions and more options.
+	All-you-can-eat buffets create large amounts of waste as they produce a surplus of food items.
+o	Overbuying
+	Buying sales and not items
+	Bulk buying
+•	Consumers do not see food waste as an issue that they can control.
+o	Many consumers see food waste as the governments problem or the institutions problem.
+o	As they do no not see the large amounts of waste that end up in landfills, they do not see how their sole reduction would contribute.
+o	When they are at institutions like restaurants, they feel it the restaurants responsibility to deal with food waste.
+o	As they have paid the institutions, they do not see that costs associated with treating the food waste.
+o	They are also a lot of choices to be made and so tend to maybe dish up more than they can actually consume, e.g., at a buffet style service.
+•	At institutions like schools, hospitals, and hotels where regulations are strict, food already presented at a buffet cannot be reserved, this food is then thrown away.
+•	At grocery stores food quality comes into question
+o	Consumers like to purchase foods that look good visibly.
+o	A lot of food is then thrown away as consumers do not want to by foods especially produce that has started to wilt or go brown.
+o	This amongst other reasons is why fruits and vegetables are the most wasted food items.
+•	As food is biodegradable, many think the food will just naturally break down, therefore food waste isn’t such a big deal.
 	`;
 
-	// const speak = () => {
-	// 	const start = () => {
-	// 		setSpeech({ ...speech, inProgress: true });
-	// 	};
-	// 	const complete = () => {
-	// 		speech.inProgress &&
-	// 			setSpeech({ ...speech, inProgress: false, paused: false });
-	// 	};
+	const speak = () => {
+		const start = () => {
+			setSpeech({ ...speech, inProgress: true });
+		};
+		const complete = () => {
+			speech.inProgress &&
+				setSpeech({ ...speech, inProgress: false, paused: false });
+		};
 
-	// 	Speech.speak(whatToSay, {
-	// 		language: 'en',
-	// 		rate: speech.rate,
-	// 		onStart: start,
-	// 		onDone: complete,
-	// 		onStopped: complete,
-	// 		onError: complete,
-	// 	});
-	// };
+		Speech.speak(whatToSay, {
+			language: 'en',
+			rate: speech.rate,
+			onStart: start,
+			onDone: complete,
+			onStopped: complete,
+			onError: complete,
+		});
+	};
 
-	// const stop = () => {
-	// 	Speech.stop();
-	// 	setSpeech({ ...speech, inProgress: false });
-	// };
+	const stop = () => {
+		Speech.stop();
+		setSpeech({ ...speech, inProgress: false });
+	};
 
-	// const increaseRate = () => {
-	// 	setSpeech({
-	// 		...speech,
-	// 		rate: speech.rate + 0.1,
-	// 	});
-	// };
+	const increaseRate = () => {
+		setSpeech({
+			...speech,
+			rate: speech.rate + 0.1,
+		});
+	};
 
-	// const decreaseRate = () => {
-	// 	setSpeech({
-	// 		...speech,
-	// 		rate: speech.rate - 0.1,
-	// 	});
-	// };
+	const decreaseRate = () => {
+		setSpeech({
+			...speech,
+			rate: speech.rate - 0.1,
+		});
+	};
 
-	// const onRefresh = () => {
-	// 	setRefreshing(true);
-	// 	setRefreshing(false);
-	// };
+	const onRefresh = () => {
+		setRefreshing(true);
+		setRefreshing(false);
+	};
 
-	// useEffect(() => {
-	// 	return () => {
-	// 		Speech.stop();
-	// 	};
-	// }, [isMounted]);
+	useEffect(() => {
+		return () => {
+			Speech.stop();
+		};
+	}, [isMounted]);
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -129,11 +179,12 @@ const Causes = ({ navigation }) => {
 					/>
 				}
 			>
+				<Text style={styles.bold}>Let's Get Started</Text>
 				<Text style={styles.bold}>Common causes and misconceptions of food waste</Text>
-				{/* <View style={styles.flexBtn}>
+				<View style={styles.flexBtn}>
 					<TouchableOpacity
 						style={styles.controllbtn}
-					// onPress={() => decreaseRate()}
+						onPress={() => decreaseRate()}
 					>
 						<Feather name='rewind' color={Colors.Primary} size={20} />
 					</TouchableOpacity>
@@ -144,7 +195,7 @@ const Causes = ({ navigation }) => {
 					) : (
 						<TouchableOpacity
 							style={styles.controllbtn}
-							// onPress={() => speak()}
+							onPress={() => speak()}
 						>
 							<Feather name='play' color={Colors.Primary} size={20} />
 						</TouchableOpacity>
@@ -152,11 +203,11 @@ const Causes = ({ navigation }) => {
 
 					<TouchableOpacity
 						style={styles.controllbtn}
-					// onPress={() => increaseRate()}
+						onPress={() => increaseRate()}
 					>
 						<Feather name='fast-forward' color={Colors.Primary} size={20} />
 					</TouchableOpacity>
-				</View> */}
+				</View>
 
 				<View style={styles.info}>
 
@@ -218,7 +269,7 @@ const Causes = ({ navigation }) => {
 				</View>
 				<View style={styles.imagecontainer}>
 					<Image
-						source={require('../../assets/Carbohydrates.jpg')}
+						source={require('../../assets/sri.jpg')}
 						style={styles.image}
 					/>
 				</View>
@@ -260,7 +311,7 @@ const Causes = ({ navigation }) => {
 
 				<View style={styles.imagecontainer}>
 					<Image
-						source={require('../../assets/Carbohydrates.jpg')}
+						source={require('../../assets/chandra.jpg')}
 						style={styles.image}
 					/>
 				</View>
@@ -287,7 +338,7 @@ const Causes = ({ navigation }) => {
 						{' '}{"\n"}
 
 
-						At institutions like schools, hospitals, and hotels where regulations are strict, 
+						At institutions like schools, hospitals, and hotels where regulations are strict,
 						food already presented at a buffet cannot be reserved, this food is then thrown away.{"\n"}
 						{' '}{"\n"}
 						At grocery stores food quality comes into question{"\n"}

@@ -146,8 +146,6 @@ const Game = ({ navigation }) => {
                 }, 1000);
             }
             } style={styles.GameWon}>
-                
-                <Text style={styles.points}>16</Text>
 
                 <Text style={styles.SorryMsg}>congratulations</Text>
                 <Text style={styles.GameLost}>You won</Text>

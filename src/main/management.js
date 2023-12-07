@@ -13,7 +13,7 @@ import {
 import { Colors, Fonts, windowWidth, windowHeight } from '../../utils/util';
 import Startquize from '../components/startquiz';
 import Feather from '@expo/vector-icons/Feather';
-// import * as Speech from 'expo-speech';
+import * as Speech from 'expo-speech';
 
 const useMountedState = () => {
 	const mountedRef = useRef(false);
@@ -39,65 +39,96 @@ const Recycling = ({ navigation }) => {
 	});
 
 	const whatToSay = `	
-	Reduce, reuse, recycle.
-	1.	Food waste is a mostly untapped energy source and is generally wasted, releasing greenhouse gases into landfills and, ultimately, global warming. 
-	2.	How to dispose of food waste socially and responsibly:.
-	•	Composting: vegetable peels can be used as fertiliser.
-	•	Use off-cuts like carrot tops, peels, tomato cores etc., to make vegetable stock.
-	•	Use vegetable peels such as carrots, cabbage, and butternut to make soup.
-	•	Use vegetable leaves, like those of carrots, as herbs to season food.
-	3.	Edible food can be donated instead of discarded.
-	
+	Food waste management methods
+•	The ideal is to prevent food waste, however not all food waste is avoidable. Therefore, options can be looked at the manage food waste.
+•	The most prominent method of food waste management is the 3 or 4 R’s.
+o	Reduce – minimise the amount of food wasted.
+o	Reuse – make use of food items in other recipes, e.g. using leftover chicken to make sandwiches the next day
+o	Recycle – upgrading food items and making them into new products e.g., making soup out of vegetable offcuts.
+o	Recover – food items that would usually be thrown away can be recovered and used again, e.g., vegetable peel chips.
+•	Under recycling there are many different methods
+•	Composting forms as a method of recycling
+o	Composting turns the organic waste into fertilizer.
+o	Items that can be composted include:
+	Greens – Grass clippings, vegetable waste, fruit scraps, weeds, and coffee grounds 
+	Browns – Dead leaves, wood chips, twigs, and fireplace ash
+	Recyclable Packaging Material – Newspaper, cardboard, and paper
+	Food Leftovers – Eggshells, tea bags, and nutshells
+•	Try put your waste to work if you cannot compost.
+o	Use the leftovers as farm animal feed such. 
+o	Try to find local facilities that you can donate the food scraps to
+•	Make creative use of your leftovers.
+o	Turn stale bread into breadcrumbs/croutons and freeze it
+o	Turn vegetable peels into pickles.
+o	Add citrus peels to sugar to flavour the sugar.
+o	Add citrus peels to sugar syrup and turn them into candy.
+o	Use vegetable tops such as those from carrots as herbs.
+•	Reuse the food packaging materials.
+o	Items such as paper wrappers, carons and containers
+•	Use fruit peels as natural aromas.
+o	Boil fruit peels to create a natural air freshener.
+•	Make infusions.
+o	Orange peels vinegar to vinegars
+o	Chilli off cuts to olive oil
+•	Regrow vegetables.
+o	Seeds, pits, and cuttings of lettuce, ginger, avocado, celery, green onions, and more can even be regrown.
+o	Plant them in soil, water them appropriately and provide plenty of sunlight.
+•	Use every last drop of the jar.
+o	Add oats or chia seeds to peanut butter jars to make overnight porridge.
+o	Add eggs or mashed potatoes to salsa jars for a flavourful punch.
+•	Revamp herbs and ends.
+o	Dry out herbs to make spice blends.
+o	Dry out vegetable ends and use in the same way.
 	`;
 
-	// const speak = () => {
-	// 	const start = () => {
-	// 		setSpeech({ ...speech, inProgress: true });
-	// 	};
-	// 	const complete = () => {
-	// 		speech.inProgress &&
-	// 			setSpeech({ ...speech, inProgress: false, paused: false });
-	// 	};
+	const speak = () => {
+		const start = () => {
+			setSpeech({ ...speech, inProgress: true });
+		};
+		const complete = () => {
+			speech.inProgress &&
+				setSpeech({ ...speech, inProgress: false, paused: false });
+		};
 
-	// 	Speech.speak(whatToSay, {
-	// 		language: 'en',
-	// 		rate: speech.rate,
-	// 		onStart: start,
-	// 		onDone: complete,
-	// 		onStopped: complete,
-	// 		onError: complete,
-	// 	});
-	// };
+		Speech.speak(whatToSay, {
+			language: 'en',
+			rate: speech.rate,
+			onStart: start,
+			onDone: complete,
+			onStopped: complete,
+			onError: complete,
+		});
+	};
 
-	// const stop = () => {
-	// 	Speech.stop();
-	// 	setSpeech({ ...speech, inProgress: false });
-	// };
+	const stop = () => {
+		Speech.stop();
+		setSpeech({ ...speech, inProgress: false });
+	};
 
-	// const increaseRate = () => {
-	// 	setSpeech({
-	// 		...speech,
-	// 		rate: speech.rate + 0.1,
-	// 	});
-	// };
+	const increaseRate = () => {
+		setSpeech({
+			...speech,
+			rate: speech.rate + 0.1,
+		});
+	};
 
-	// const decreaseRate = () => {
-	// 	setSpeech({
-	// 		...speech,
-	// 		rate: speech.rate - 0.1,
-	// 	});
-	// };
+	const decreaseRate = () => {
+		setSpeech({
+			...speech,
+			rate: speech.rate - 0.1,
+		});
+	};
 
-	// const onRefresh = () => {
-	// 	setRefreshing(true);
-	// 	setRefreshing(false);
-	// };
+	const onRefresh = () => {
+		setRefreshing(true);
+		setRefreshing(false);
+	};
 
-	// useEffect(() => {
-	// 	return () => {
-	// 		Speech.stop();
-	// 	};
-	// }, [isMounted]);
+	useEffect(() => {
+		return () => {
+			Speech.stop();
+		};
+	}, [isMounted]);
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -124,9 +155,10 @@ const Recycling = ({ navigation }) => {
 					/>
 				}
 			>
+				<Text style={styles.bold}>Let's Get Started</Text>
 				<Text style={styles.bold}>Food waste management methods.</Text>
 
-				{/* <View style={styles.flexBtn}>
+				<View style={styles.flexBtn}>
 					<TouchableOpacity
 						style={styles.controllbtn}
 						onPress={() => decreaseRate()}
@@ -152,11 +184,11 @@ const Recycling = ({ navigation }) => {
 					>
 						<Feather name='fast-forward' color={Colors.Primary} size={20} />
 					</TouchableOpacity>
-				</View> */}
+				</View>
 
 				<View style={styles.imagecontainer}>
 					<Image
-						source={require('../../assets/FoodRecycle.jpg')}
+						source={require('../../assets/lenka.jpg')}
 						style={styles.image}
 					/>
 				</View>
@@ -164,8 +196,6 @@ const Recycling = ({ navigation }) => {
 				<View style={styles.info}>
 
 					<Text style={styles.graytext}>
-						;
-
 						The ideal is to prevent food waste, however not all food waste is avoidable. Therefore, options can be looked at the manage food waste.{"\n"}
 
 						<Text style={{ fontWeight: 'bold' }}>The most prominent method of food waste management is the 3 or 4 R’s:{"\n"}</Text>

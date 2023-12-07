@@ -266,7 +266,7 @@ const Game = ({ navigation }) => {
         const updatepuzzle = [...puzzle_Data];
         updatepuzzle[index].input_Value = char[0];
         setPuzzleData(updatepuzzle);
-       
+
         //if (inputRef && inputRef.current && updatepuzzle[index].input_Value != '') {
 
         if (inputRef && inputRef.current) {
@@ -284,6 +284,7 @@ const Game = ({ navigation }) => {
             }, 500);
 
         };
+        nextRef.current.focus();
 
         Fresh(puzzle_Data[0].input_Value,
             puzzle_Data[1].input_Value,
@@ -643,8 +644,6 @@ const Game = ({ navigation }) => {
                     }, 1000);
                 }
                 } style={styles.GameWon}>
-                    
-                    <Text style={styles.points}>{score}</Text>
 
                     <Text style={styles.SorryMsg}>congratulations</Text>
                     <Text style={styles.GameLost}>You won</Text>
@@ -671,7 +670,7 @@ const Game = ({ navigation }) => {
 
 
                     <View style={styles.hr}>
-                        <Text style={{ color: '#1d5c4d',fontSize:25, }}>{" "}SCORE:{score}</Text>
+                        <Text style={{ color: '#1d5c4d', fontSize: 25, }}>{" "}SCORE:{score}</Text>
 
                     </View>
 

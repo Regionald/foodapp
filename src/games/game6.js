@@ -231,8 +231,6 @@ const WordSearch = ({ navigation }) => {
         }
         } style={styles.GameWon}>
 
-          <Text style={styles.points}>{score}</Text>
-
           <Text style={styles.SorryMsg}>congratulations</Text>
           <Text style={styles.GameLost}>You won</Text>
         </View>
